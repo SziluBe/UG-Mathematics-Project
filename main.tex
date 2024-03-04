@@ -477,10 +477,30 @@ TODO: exposition for the definition of the adjoint
 TODO: from the remark before Example 4 in the book
 
 \begin{thm}
-    For a densely defined operator $T$ on a Hilbert space $\mathscr{H}$ the following statements hold. $T^{*}$ is closed, $T$ is closable if and only if $D(T^{*})$ is dense in which case $\overline{T} = T^{**}$, and if $T$ is closable, then $(\overline{T})^{*} = T^{*}$.
+    For a densely defined operator $T$ on a Hilbert space $\mathscr{H}$ the following statements hold. 
+    \begin{itemize}
+        \item $T^{*}$ is closed.
+        \item $T$ is closable if and only if $D(T^{*})$ is dense in which case $\overline{T} = T^{**}$.
+        \item If $T$ is closable, then $(\overline{T})^{*} = T^{*}$.
+    \end{itemize}
 \end{thm}
 \begin{proof}
-    
+    TODO: cite R-S; largely copied Consider the unitary operator $$V: \mathscr{H} \times \mathscr{H} \to \mathscr{H} \times \mathscr{H}: (\phi,\psi) \mapsto (\psi,\phi).$$Because $V$ is unitary, $V(E^{\perp}) = (V(E))^{\perp}$ for any subspace $E \subseteq \mathscr{H}$. Let $T$ be a linear operator on $\mathscr{H}$ and $(\phi, \eta) \in \mathscr{H} \times \mathscr{H}$. Then $(\phi, \eta) \in V(\Gamma(T))^{\perp}$ if and only if $\langle (\phi,\eta), (-T\psi,\psi) \rangle = 0$ for all $\psi \in D(T)$, i.e. if and only if $(\phi, \eta) \in \Gamma(T^{*})$. Therefore $\Gamma(T^{*}) = V(\Gamma(T))^{\perp}$, which is an orthogonal complement, and thus closed.
+
+    To show the second statement, note that $\Gamma(T) \subseteq \mathscr{H} \times \mathscr{H}$ is a linear subset, so
+    \begin{align}
+        \overline{\Gamma(T)} &= (\Gamma(T)^{\perp})^{\perp} \\
+        &= (V^{2}\Gamma(T)^{\perp})^{\perp} \\
+        &= (V(V\Gamma(T))^{\perp})^{\perp} \\
+        &= (V\Gamma(T^{*}))^{\perp}.
+    \end{align}
+    So by our previous arguments, if $T^{*}$ is densely defined, $\overline{\Gamma(T)}$ is the graph of $T^{**}$.
+
+    Conversely, suppose $D(T^{*})$ is not dense and let $\psi \in D(T^{*})^{\perp}$. 
+    Then for any $(\phi, T^{*}\phi) \in \Gamma(T^{*})$ we have $\langle (\phi, T^{*}\phi), (\psi,0) \rangle = \langle \phi, \psi \rangle + \langle T^{*}\phi, 0 \rangle = 0$. So $(\psi, 0) \in (\Gamma(T^{*}))^{\perp}$.
+    Therefore $V(\Gamma(T^{*}))^{\perp}$ is not the graph of an operator, as if it were then the corresponding operator would not be well-defined, since $V(\psi, 0) = (0, \psi)$. Now note that $\overline{\Gamma(T)} = (V\Gamma(T^{*}))^{\perp}$, so $T$ is not closable.
+
+    Finally, notice that if $T$ is closable then $T^{*} = \overline{(T^{*})} = T^{***} = (\overline{T})^{*}$.
 \end{proof}
 
 \begin{defn}
