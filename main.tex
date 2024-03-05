@@ -256,7 +256,7 @@ In order to proceed with the moment problem, we first demonstrate that continuou
     \begin{itemize}
         \item $\phi$ is a $*$-homomorphism, i.e.:
         \begin{itemize}
-            \item $\phi(f(A,B)g(A,B)) = \phi(f(A,B))\phi(g(A,B))$,
+            \item $\phi(f(A)g(A)) = \phi(f(A))\phi(g(A))$,
             \item $\phi(\lambda f) = \lambda \phi(f)$,
             \item $\phi(1) = I$, and
             \item $\phi(\overline{f}) = \phi(f)^{*}$.
@@ -360,8 +360,8 @@ Let $A$ be a bounded self-adjoint operator on a Hilbert space $\mathscr{H}$, and
 \end{thm}
 \begin{proof}
     TODO:cite Define $U$ by $U\phi(f)\psi := f$ for $f \in C(\sigma(A))$. This results in a well-defined map, since $$\|\phi(f)\psi\|^{2} = \langle \psi, \phi^{*}(f)\phi(f)\psi \rangle = \langle \psi, \phi(\overline{f}f)\psi \rangle = \int _{\sigma(A)} |f(\lambda)|^{2} \, d\mu_{\psi}(\lambda).$$ Therefore, if $f=g, \mu_{\psi}$-a.e., then $\phi(f)\psi = \phi(g)\psi$. Thus $U$ is well-defined on $D := \{ \phi(f)\psi \, | \, f \in C(\sigma(A)) \}$, and $U$ is also norm-preserving. Recall that $\psi$ is cyclic in $A$, so $\overline{D} = \mathscr{H}$ and thus the BLT Theorem yields an isometric extension $U: \mathscr{H} \to L^{2}(\sigma(A), \mu_{\psi})$, and because $C(\sigma(A))$ is dense in $L^{2}(\sigma(A),\mu_{\psi})$, $U$ is onto. Finally, if $f \in C(\sigma(A))$, then \begin{align*}
-        (UAU^{-1}f)(\lambda) &= (UA\phi(f))(\lambda) \\
-        &= (U\phi(xf))(\lambda) \\
+        (UAU^{-1}f)(\lambda) &= (UA\phi(f)\psi)(\lambda) \\
+        &= (U\phi(xf)\psi)(\lambda) \\
         &= \lambda f(\lambda).
     \end{align*} But by continuity of $U$ and $\phi$ this also holds for $f \in L^{2}(\sigma(A),\mu_{\psi})$.
 \end{proof}
@@ -419,7 +419,7 @@ Our main theorem for this section is:
     Whenever the linear operator $A$ that we defined above using the given sequence of moments is bounded, and there exists a measure $\mu$ satisfying the conditions of the Hamburger Moment Problem, then $\mu$ is unique as such.
 \end{thm}
 
-The sketch of the proof goes as follows: We consider two measures $\mu$ and $\nu$ satisfying the conditions of the moment problem. Then we take the spaces $L^{2}([a,b], \mu)$ and $L^{2}([a,b], \nu)$, and extend $A$ to these spaces. Finally we find the constant function $\mathds{1}(x) = 1$ to be cyclic in $A$, yielding find an isomorphism $L^{2}([a,b], \mu) \cong L^2(\sigma(A), \mu_\mathds{1}) \cong L^{2}([a,b], \nu)$, implying $mu = \mu_\mathds{1} = \nu$.
+The sketch of the proof goes as follows: We consider two measures $\mu$ and $\nu$ satisfying the conditions of the moment problem. Then we take the spaces $L^{2}([a,b], \mu)$ and $L^{2}([a,b], \nu)$, and extend $A$ to these spaces. Finally we find the constant function $\mathds{1}(x) = 1$ to be cyclic in $A$, yielding TODO find an isomorphism $L^{2}([a,b], \mu) \cong L^2(\sigma(A), \mu_\mathds{1}) \cong L^{2}([a,b], \nu)$, implying $mu = \mu_\mathds{1} = \nu$.
 
 % and use the continuous functional calculus for self-adjoint bounded linear operators to define certain linear functionals which will turn out to be equal as long as $\mu$ and $\nu$ satisfy the conditions of the Hamburger Moment Problem. Note that we consider the $L^{2}$ functions on $[a,b]$ because $\mu,\nu$ are supported only on some compact subset of $\mathbb{R}$ due to the boundedness of $A$, and thus $\exists a,b \in \mathbb{R}$ so that $\text{supp}(\mu) \subseteq [a,b]$ and $\text{supp}(\nu) \subseteq [a,b]$. Finally the aforementioned equality of linear functionals will force the inner products on $L^{2}([a,b],\mu)$ and $L^{2}([a,b], \nu)$ to agree everywhere, leading to the conclusion that $\mu$ and $\nu$ must be equal.
 
@@ -439,7 +439,26 @@ Consider the self-adjoint operator $A_{\mu}: C([a,b]) \to L^{2}([a,b],\mu): f \m
     Clearly $S := \text{span}\{ \mathds{1}, \tilde{A_{\mu}}\mathds{1} = x, \tilde{A_{\mu}}^{2}\mathds{1} = x^{2}, \dots \} = \mathbb{C}[x]$ for $x \in [a,b]$. Then by the Weierstrass Approximation Theorem $S$ is dense in $C([a,b])$, so by TODO [[MP C ab is dense in L2 ab mu and nu]] $S$ is dense in $L^{2}([a,b],\mu)$.
 \end{proof}
 
-TODO: check and elaborate Now by Theorem \ref{spectral-mo} there exists a unitary operator $$U: L^2([a,b],\mu) \to L^2(\sigma(\tilde{A}_\mu), \mu_\mathds{1}),$$ so $L^2([a,b],\mu)$ and $L^2(\sigma(\tilde{A}_\mu), \mu_\mathds{1})$ are isomorphic, hence $\text{supp}(\mu) = \sigma(A)$, and $\mu(B) = \mu_\mathds{1}(B)$ for all Borel sets $B \subseteq \sigma(A)$. However, entirely the same reasoning shows that for such $B$ we have $\text{supp}(\nu) = \sigma(A)$, and $\nu(B) = \mu_\mathds{1}(B)$ also. Therefore $\mu = \mu_\mathds{1} = \nu$, so in the case when $A$ is bounded the solution to the Hamburger Moment Problem is unique.
+For clarity, in the following argument we will denote variables taking values in $[a,b]$ as $x \in [a,b]$, and variables taking values in $\sigma(\tilde{A}_{\mu})$ as $\lambda \in \sigma(\tilde{A}_{\mu})$.
+Consider the polynomials $P = \sum_{i=0}^{d}a_{i}X^{i} \in \mathbb{C}[X]$, and let $p(\lambda) := P(\lambda) \in L^{2}(\sigma(\tilde{A}_{\mu}), \mu_{\mathds{1}})$ and $p_{\mu}(x) = P(x) \in L^{2}([a,b],\mu)$.
+Then
+$$\phi(p)\mathds{1} = P(A)\mathds{1} = p_{\mu}(x) \in L^{2}([a,b], \mu),$$
+where $\phi$ is the map defining the functional calculus for $\tilde{A}_{\mu}$.
+By the claim above the cyclic case of the Spectral Theorem \ref{spectral-mo} applies to $\mathscr{H} := L^{2}([a,b],\mu)$, the self-adjoint operator $\tilde{A}_{\mu}$, and $\psi := \mathds{1}$, yielding a unitary map
+$$U: L^{2}([a,b],\mu) \to L^{2}(\sigma(\tilde{A}_{\mu}),\mu_{\mathds{1}}).$$
+Then by definition of $U$ as in the proof of Theorem \ref{spectral-mo}, we have
+$$Up_{\mu} = U\phi(p)\mathds{1} = p.$$
+So $U$ maps any polynomial $P \in \mathbb{C}[x]$ on $[a,b]$ to the same polynomial $P \in \mathbb{C}[\lambda]$ on $\sigma(\tilde{A}_{\mu})$, i.e. we have found the restriction
+$$U_{P} := U \restriction_{\mathbb{C}[x]}: \mathbb{C}[x] \to \mathbb{C}[\lambda]: P(x) \mapsto P(\lambda).$$
+This immediately implies $\text{supp}(\mu) = \text{supp}(\mu_{\mathds{1}})$ (consider the polynomial $1$). Hence any $f = f \restriction_{\sigma(\tilde{A}_{\mu})}$ a.e. with regard to $\mu$, so $L^{2}([a,b],\mu) = L^{2}(\sigma(\tilde{A}_{\mu}),\mu)$ through
+$$r: L^{2}([a,b],\mu) \to L^{2}(\sigma(\tilde{A}_{\mu}),\mu): f \mapsto f \restriction_{\sigma(\tilde{A}_{\mu})}.$$
+And then the composition $U_{P} \circ r = \text{id}_{\mathbb{C}[\lambda]}$ acts as the identity on $\mathbb{C}[\lambda], \lambda \in \sigma(\tilde{A}_{\mu})$.
+Therefore by density of $\mathbb{C}[\lambda]$ in both $L^{2}(\sigma(\tilde{A}_{\mu}),\mu)$ and $L^{2}(\sigma(\tilde{A}_{\mu}),\mu_{\mathds{1}})$, we have $\mu = \mu_{\mathds{1}}$.
+Now by an identical argument we have $\nu = \mu_{\mathds{1}}$, and thus $\mu = \nu$.
+
+% By definition of $U$, we have $U \phi(f) \mathds{1} = f$. Then $\int _{[a,b]} f \, d\mu = \langle \mathds{1}, \phi(f)\mathds{1} \rangle = \int _{\sigma(\tilde{A}_{\mu})} f \, d\mu_{\mathds{1}}$. The first equality holds on polynomials by linearity of $U,U^{-1}$ and the statement of the spectral theorem claiming $(UAU^{-1}f)(\lambda) = \lambda f(\lambda)$. We then extend this by continuity of $U, U^{-1}$ and the density of the polynomials on $C([a,b])$, which is itself dense on $L^{2}([a,b],\mu)$.
+
+% SCRAPPED; see above | check and elaborate Now by Theorem \ref{spectral-mo} there exists a unitary operator $$U: L^2([a,b],\mu) \to L^2(\sigma(\tilde{A}_\mu), \mu_\mathds{1}),$$ so $L^2([a,b],\mu)$ and $L^2(\sigma(\tilde{A}_\mu), \mu_\mathds{1})$ are isomorphic, hence $\text{supp}(\mu) = \sigma(A)$, and $\mu(B) = \mu_\mathds{1}(B)$ for all Borel sets $B \subseteq \sigma(A)$. However, entirely the same reasoning shows that for such $B$ we have $\text{supp}(\nu) = \sigma(A)$, and $\nu(B) = \mu_\mathds{1}(B)$ also. Therefore $\mu = \mu_\mathds{1} = \nu$, so in the case when $A$ is bounded the solution to the Hamburger Moment Problem is unique.
 
 % Now consider the map $\ell: C^{\mathbb{R}}([a,b]) \to \mathbb{R}: f \mapsto \langle \mathds{1}, f(\tilde{A_{\mu}})\mathds{1} \rangle_{\mu}$. Since bounded self-adjoint operators have no residual spectrum, the properties of the functional calculus give that $f(\tilde{A}_{\mu})\mathds{1} = f$, so $\langle \mathds{1}, f(\tilde{A_{\mu}})\mathds{1} \rangle_{\mu} = \int _{\sigma(\tilde{A}_\mu)} f(x) \, d\mu(x)$. Then $\ell$ is a positive bounded linear functional since the map $\phi$ inducing the functional calculus for bounded self-adjoint operators is an isometry and $\phi$ is positive on $C^{\mathbb{R}}(\sigma(\tilde{A}_{\mu}))$. (We are abusing notation here slightly, since $\sigma(\tilde{A}_{\mu}) \subseteq [a,b]$ we use $f(\tilde{A}_{\mu}) := \phi(f \restriction_{\sigma(\tilde{A}_{\mu})})$.) Now by the Riesz-Markov-Kakutani Theorem for positive bounded linear functionals #TODO: **quote from Rudin (book 2 Ch. Thm. 2.14)** there is a unique real-valued measure $\mu_{\mathds{1},\mathds{1}}$ on $[a,b]$ such that $\langle \mathds{1}, f(\tilde{A_{\mu}})\mathds{1} \rangle_\mu = \int _{a}^{b} f(x) \, d\mu_{\mathds{1},\mathds{1}}(x)$. Finally the same reasoning holds for $\nu$ in place of $\mu$, hence $\forall f \in C([a,b]): \, \int _{a}^{b} f(x) \, d\mu(x) = \int _{a}^{b} f(x) \, d\nu(x)$, so $\mu = \mu_{\mathds{1},\mathds{1}} = \nu$.
 
