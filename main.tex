@@ -25,7 +25,7 @@
 
 \begin{abstract} ... Abstract text ... \end{abstract}
 \declaration
-\dedication{}
+\dedication{TODO: Dedication}
 
 \tableofcontents
 \addcontentsline{toc}{chapter}{Contents}
@@ -42,11 +42,20 @@ $$is an object that comes up frequently. This way we can associate to any finite
 
 It turns out that in order to answer these questions, it is helpful to define a sesquilinear form $\mathcal{H}: \mathbb{C}[X] \times \mathbb{C}[X] \to \mathbb{C}$ on the complex polynomials $\mathbb{C}[X]$ that acts on $P(X) := \sum_{k=0}^{d_{P}}a_{k}X^{k}$ and $Q(X) := \sum_{k=0}^{d_{Q}}b_{k}X^{k}$ by
 $$\mathcal{H}: (P, Q) \mapsto \mathcal{H}(P,Q) := \sum_{i = 0}^{d_{P}} \sum_{j = 0}^{d_{Q}} \overline{a}_{i}b_{i}\gamma_{i+j}.$$
-We will later see that under certain conditions this defines a semi inner product on the polynomials, which we will use to construct a Hilbert space. Next, we define a linear operator $A$ on the complex polynomials as $A: \mathbb{C}[X] \to \mathbb{C}[X]: p \mapsto xp$. These constructions will yield the following answers to the questions posed by the Hamburger Moment Problem: If $A$ is bounded, there exists a unique Borel measure $\mu$ on $\mathbb{R}$ with moments $\gamma_{n}$ if and only if $\mathcal{H}$ is a semi inner product on $\mathbb{C}[X]$. If $A$ is unbounded the question of uniqueness becomes much more difficult to answer, and is beyond the scope of this project, however the answer to the question of existence remains the same, although more theory is required to show this than in the bounded case.
+We will later see that under certain conditions this defines a semi inner product on the polynomials, which we will use to construct a Hilbert space. Next, we define a linear operator $A$ on the complex polynomials as $A: \mathbb{C}[X] \to \mathbb{C}[X]: P \mapsto XP$. These constructions will yield the following answers to the questions posed by the Hamburger Moment Problem: If $A$ is bounded, there exists a unique Borel measure $\mu$ on $\mathbb{R}$ with moments $\gamma_{n}$ if and only if $\mathcal{H}$ is a semi inner product on $\mathbb{C}[X]$. If $A$ is unbounded the question of uniqueness becomes much more difficult to answer, and is beyond the scope of this project, however the answer to the question of existence remains the same, although more theory is required to show this than in the bounded case.
 
 We will use several forms of the spectral theorem to arrive at these solutions, as well as the von Neumann theory of self-adjoint extensions for unbounded operators. Moment problems provide a good motivation for the exposition of this theory, as they provide concrete examples for many concepts that are introduced. They were also an important historical motivator for the development of functional analysis. On top of spectral theorems and self-adjoint extension theory, we quote two forms of the Riesz-Markov-Kakutani Representation Theorem without proof.
 
-In chapters $2$,$3$, and $5$, we following the treatment of the theory by Reed-Simon TODO quite closely, supplemented by TODO. Additionally, our approach to the question of existence in the Hamburger Moment Problem is largely similar to those outlined in TODO (R-S 2 and the paper), with the notable difference that we do not develop the general unbounded functional calculus. Instead we use the functional calculus for bounded normal operators to show the relevant results directly. Wherever we borrow ideas or arguments in a proof, they will be referenced at the beginning of said proof. We will use basic results from the Edinburgh undergraduate curriculum without comment, deeper results will be referenced as usual.
+In chapters $2$,$3$, and $5$, we follow the treatment of the theory by Reed-Simon TODO quite closely, supplemented by TODO. Additionally, our approach to the question of existence in the Hamburger Moment Problem is largely similar to those outlined in TODO (R-S 2 and the paper), with the notable difference that we do not develop the general unbounded functional calculus. Instead we use the functional calculus for bounded normal operators to show the relevant results directly. Wherever we borrow ideas or arguments in a proof, they will be referenced at the beginning of said proof. We will use basic results from the Edinburgh undergraduate curriculum without comment, deeper results will be referenced as usual.
+
+TODO
+
+We use the notation $\mathscr{B}(X)$ to denote the set of bounded linear operators on a normed vector space $X$. Additionally, our inner products are linear in the first argument and antilinear in the second argument.
+
+In the future, we will use the notation $C(X)$ to refer to continuous functions $X \to \mathbb{C}$.
+% , and $C^\mathbb{R}(X)$ for continuous functions $X \to \mathbb{R}$.
+
+% The Borel sigma-algebra on a space $X$ will be denoted $\mathcal{B}(X)$.
 
 % For a random variable $X$ on a measurable space space $(M, \mathcal{S})$ and a natural number $n \geq 0$, we define the $n$th moment $\gamma_{n}$ of $X$ as the expected value of its $n$th exponent, i.e. $\gamma_{n} := \mathbb{E}X^{n} = \int _{M} X^{n} \, dX$, where we allow for the possibility that the value of $\gamma_{n}$ is infinite or does not exist. We call $(\gamma_{n})_{n=1}^{\infty}$ the sequence of moments of the random variable $X$. In this project we will be considering the Hamburger Moment Problem, which poses the following question: Suppose we start with a sequence $(\gamma_{n})_{n=1}^{\infty}$ of real numbers, does there exist a random variable $X$ such that $\gamma_{n}$ is its sequence of moments? If so, is $X$ unique with this property?
 
@@ -116,27 +125,19 @@ In chapters $2$,$3$, and $5$, we following the treatment of the theory by Reed-S
 
 \chapter{Adjoints and spectra of bounded linear operators}
 
-As mentioned before, the theory of linear operators is intimately related to the Moment Problem. In this chapter we go over important properties of bounded operators as well as the concept of resolvent sets and spectra. We will use these facts extensively in later chapters. Of particular interest are self-adjoint operators, as we will see that the diagonalisation of finite dimensional Hermitian matrices can be generalised to self-adjoint linear operators on infinite dimensional spaces. We will see that the spectrum, the analogue through this generalisation of the set of eigenvalues remains a subset of the real line, and relating to the Moment Problem it will in fact be the support of measures we construct as solutions to the Moment Problem. Also of interest are positive operators, which we will use in later chapters to define the positive linear functionals on which we will invoke the Riesz-Markov-Kakutani Representation Theorem, yielding the aforementioned measures.
-
-We use the notation $\mathscr{B}(X)$ to denote the set of bounded linear operators on a normed vector space $X$.
+As mentioned before, the theory of linear operators is intimately related to the Moment Problem. In this chapter we go over important properties of bounded operators as well as the concept of resolvent sets and spectra. We will use the facts developed here extensively in later chapters. Of particular interest are self-adjoint operators, as we will see that the diagonalisation of finite dimensional Hermitian matrices can be generalised to self-adjoint linear operators on infinite dimensional spaces. The spectrum, the analogue of the set of eigenvalues in the case of bounded linear operators, remains a subset of the real line. Also of interest are positive operators, which are always self-adjoint in a Hilbert space over $\mathbb{C}$, and will be used to define positive linear functionals of the form $\langle Tv, w \rangle$. The Riesz-Markov-Kakutani Theorem, which we only quote in this project, tells us that linear functionals can be uniquely represented by certain measures. In particular, positive linear functionals correspond to measures on the real line. In relation to the Moment Problem, this is in fact how we will acquire solutions, which will turn out to be so-called spectral measures, supported on the spectrum of the aforementioned operator $A$.
 
 \begin{defn}
-    Let $T \in \mathscr{B}(X)$ on a Banach space $X$. Then $\lambda \in \mathbb{C}$ is in the resolvent set $\rho(T)$ of $T$ if $\lambda I - T$ is a bijection with a bounded inverse $R_{\lambda}(T) = (\lambda I - T)^{-1}$ called the resolvent of $T$ at $\lambda$. If $\lambda \notin \rho(T)$ then we say $\lambda \in \sigma(T)$ where $\sigma(T)$ is called the spectrum of $T$. We make a distinction between three cases for the elements of the spectrum.
+    Let $T \in \mathscr{B}(X)$ on a Banach space $X$. Then $\lambda \in \mathbb{C}$ is in the resolvent set $\rho(T)$ of $T$ if $\lambda I - T$ is a bijection with a bounded inverse, and the operator $R_{\lambda}(T) = (\lambda I - T)^{-1}$ called the resolvent of $T$ at $\lambda$. If $\lambda \notin \rho(T)$ then we say $\lambda$ is in the spectrum $\sigma(T)$ of $T$. We further split the spectrum into three disjoint sets.
     
-    The point spectrum of $T$ is the set of all eigenvalues $\{ \lambda \in \mathbb{C} \, | \, \exists x \in X: x \neq 0: Tx = \lambda x \}$, in other words those $\lambda \in \mathbb{C}$ for which $T - \lambda I$ is not one-to-one, the vectors $x$ corresponding to each $\lambda$ are called the eigenvectors of $T$.
-    
-    The continuous spectrum is the set of $\lambda_{c} \in \mathbb{C}$ such that $T - \lambda_{c} I$ is one-to-one but not onto, and $\Ran(T - \lambda_{c}I)$ is dense in $X$.
-    
-    The residual spectrum of $T$ is the set of $\lambda_{r} \in \mathbb{C}$ such that $T - \lambda_{r}I$ is one-to-one but not onto, and $\Ran(T - \lambda_{r}I)$ is not dense in $X$.
-
-    Note that the point, continuous, and residual spectrum are disjoint sets.
+    The point spectrum of $T$ consists of those $\lambda \in \mathbb{C}$ for which $T - \lambda I$ is not one-to-one. The continuous spectrum consists of $\lambda_{c} \in \mathbb{C}$ such that $T - \lambda_{c} I$ is one-to-one but not onto, and $\Ran(T - \lambda_{c}I)$ is dense in $X$. And the residual spectrum consists of $\lambda_{r} \in \mathbb{C}$ such that $T - \lambda_{r}I$ is one-to-one but not onto, and $\Ran(T - \lambda_{r}I)$ is not dense in $X$.
 \end{defn}
 
 \begin{defn}
-    The adjoint of a bounded linear operator $A: \mathscr{H} \to \mathscr{H}$ on a Hilbert space $\mathscr{H}$ is a bounded linear operator $A^{*}: \mathscr{H} \to \mathscr{H}$ such that $\forall x,y \in \mathscr{H}: \langle y,Ax \rangle = \langle A^{*}y, x \rangle$. $A$ is self-adjoint if $A^{*} = A$.
+    The adjoint of $A \in \mathscr{B}(\mathscr{H})$ where $\mathscr{H}$ is a Hilbert space is $A^{*} \in \mathscr{B}(\mathscr{H})$ such that $\forall x,y \in \mathscr{H}: \langle Ax,y\rangle = \langle x, A^{*}y \rangle$. $A$ is self-adjoint if $A^{*} = A$.
 \end{defn}
 
-The following fact justifies the use of the definite article "the" in the definition of the adjoint.
+The following fact justifies the use of the definite article in the definition of the adjoint.
 
 \begin{thm}
     Every $T \in \mathscr{B}(\mathscr{H})$ has a unique adjoint $T^{*} \in \mathscr{B}(\mathscr{H})$, where $\mathscr{H}$ is a Hilbert space.
@@ -144,21 +145,14 @@ The following fact justifies the use of the definite article "the" in the defini
 
 We recall that adjoints satisfy the following basic properties, which we will frequently use TODO reference linear analysis:
 
-\begin{thm}
-    Consider $T, S \in \mathscr{B}(\mathscr{H})$, where $\mathscr{H}$ is a Hilbert space.
-    \begin{enumerate}
-        \item[a)] The map $\mathscr{B}(\mathscr{H}) \to \mathscr{B}(\mathscr{H}): T \mapsto T^{*}$, which is well-defined by the previous theorem, is a conjugate linear isometric isomorphism.
-        \item[b)] $(TS)^{*} = S^{*}T^{*}$.
-        \item[c)] $(T^{*})^{*} = T$.
-        \item[d)] If $T$ has a bounded inverse $T^{-1}$, then $T^{*}$ has a bounded inverse and $(T^{*})^{-1} = (T^{-1})^{*}$.
-        \item[e)] $\|T^{*}T\| = \|T\|^{2}$.
-    \end{enumerate}
+\begin{thm}\label{adjoint-basic-properties}
+    Consider $T, S \in \mathscr{B}(\mathscr{H})$, where $\mathscr{H}$ is a Hilbert space. Then the map $\mathscr{B}(\mathscr{H}) \to \mathscr{B}(\mathscr{H}): T \mapsto T^{*}$, which is well-defined by the previous theorem, is a conjugate linear isometric isomorphism. The following equalities hold: $(TS)^{*} = S^{*}T^{*}$, $(T^{*})^{*} = T$, and $\|T^{*}T\| = \|T\|^{2}$. And if $T$ has a bounded inverse $T^{-1}$, then $T^{*}$ has a bounded inverse and $(T^{*})^{-1} = (T^{-1})^{*}$.
 \end{thm}
 
 Now we need to introduce analytic operator-valued functions, the theory of which we will use extensively in the remainder of this chapter. Let $\mathscr{H}$ be a Hilbert space, then a map $F: D \to \mathscr{B}(\mathscr{H})$ defined on an open subset $D \subseteq \mathbb{C}$ of the complex plane is analytic at $z_{0} \in D$ if there exists a sequence $(T_{n})_{n=1}^{\infty} \subset \mathscr{B}(\mathscr{H})$ of operators such that the series $F(z) = \sum_{n=0}^{\infty} (z - z_{0})^{n}T_{n}$ converges in the space $\mathscr{B}(\mathscr{H})$ for all $z \in \{ z \in \mathbb{C} \; | \; |z - z_{0}| < \delta \}$ for some $\delta > 0$. We say that $F$ is analytic on $D$ if $F$ is analytic at every $z_{0} \in D$. This leads to a generalisation of complex analysis to operator-valued analytic functions, however the proof is beyond the scope of the present project. See TODO for more details. From here onwards we will assume that classic theorems from complex analysis can be invoked on operator-valued analytic functions.
 
 \begin{thm}\label{resolvent-analytic}
-    Let $\mathscr{H}$ be a Hilbert space, and $T \in \mathscr{B}(\mathscr{H})$. Then $\rho(T) \supset \{ \lambda \in \mathbb{C} \, | \, \lambda > \|A\| \}$ and $\rho(T)$ is an open subset of $\mathbb{C}$. Additionally, the resolvent $R: \rho(A) \to \mathscr{B}(\mathscr{H}): \lambda \mapsto R_{\lambda}(T) := (\lambda I - T)^{-1}$ is an analytic operator-valued function.
+    Let $\mathscr{H}$ be a Hilbert space, and $T \in \mathscr{B}(\mathscr{H})$. Then $\rho(T) \supset \{ \lambda \in \mathbb{C} \, | \, \lambda > \|A\| \}$ and $\rho(T)$ is an open subset of $\mathbb{C}$. Additionally, the mapping of $\lambda \in \rho(T)$ to the resolvent, $R: \lambda \mapsto R_\lambda(T) := (\lambda I - T)^{-1}$ is an analytic operator-valued function.
 \end{thm}
 \begin{proof}
     Let $\lambda_{0} \in \rho(T)$, and rewrite $$\lambda I - T = (\lambda_{0}I - T)(I - (\lambda_{0} - \lambda)(\lambda_{0}I - T)^{-1}).$$ Now suppose $\|(\lambda_{0} - \lambda)(\lambda_{0}I - T)^{-1}\| < 1$, or equivalently $$|\lambda_{0}-\lambda| < \frac{1}{\|(\lambda_{0}I - T)^{-1}\|} =: C.$$ Then the Taylor series $I + \sum_{n=1}^{\infty}\left(\frac{\lambda_{0}-\lambda}{\lambda_{0}-T}\right)^{n}$ converges in the space $\mathscr{B}(\mathscr{H})$ by the usual geometric series trick in complex analysis, and $$(\lambda I - T)^{-1} = (I - (\lambda_{0} - \lambda)(\lambda_{0} I - T)^{-1})^{-1} = I + \sum_{n=1}^{\infty}\left(\frac{\lambda_{0}-\lambda}{\lambda_{0}-T}\right)^{n}.$$ Hence we can write $$R_{\lambda}(T) := (\lambda I - T)^{-1} = \left(I + \sum_{n=1}^{\infty}\left(\frac{\lambda_{0}-\lambda}{\lambda_{0}-T}\right)^{n}\right)^{-1}(\lambda_{0}I - T)^{-1}.$$ So any $\lambda$ within the open disc of radius $C$ around $\lambda_{0}$ is contained in $\rho(T)$, and $R$ is an analytic operator-valued function on $\rho(T)$, since $R_{\lambda}(T)$ has a power series expansion there.
@@ -166,7 +160,7 @@ Now we need to introduce analytic operator-valued functions, the theory of which
 TODO **Proof:** [ch9.pdf (ucdavis.edu)](https://www.math.ucdavis.edu/~hunter/book/ch9.pdf) + good example for continuous spectrum TODO: example + ref + remove this
 
 \begin{cor}\label{first-resolvent-formula}
-    Let $\mathscr{H}, T$ as in \ref{resolvent-analytic}, and $\lambda,\mu \in \rho(T)$. Then $R_{\lambda}(T), R_{\mu}(T)$ commute: $R_{\lambda}(T)R_{\mu}(T) = R_{\mu}(T)R_{\lambda}(T)$, and the First Resolvent Formula holds: $$R_{\lambda}(T) - R_{\mu}(T) = (\mu - \lambda)R_{\mu}(T)R_{\lambda}(T).$$
+    Let $\mathscr{H}, T$ as above, and $\lambda,\mu \in \rho(T)$. Then $R_{\lambda}(T), R_{\mu}(T)$ commute: $R_{\lambda}(T)R_{\mu}(T) = R_{\mu}(T)R_{\lambda}(T)$, and the First Resolvent Formula holds: $$R_{\lambda}(T) - R_{\mu}(T) = (\mu - \lambda)R_{\mu}(T)R_{\lambda}(T).$$
 \end{cor}
 \begin{proof}
     Since $R_{\lambda}(T) = (\lambda I - T)^{-1}$,  we have 
@@ -174,11 +168,11 @@ TODO **Proof:** [ch9.pdf (ucdavis.edu)](https://www.math.ucdavis.edu/~hunter/boo
 R_{\lambda}(T) - R_{\mu}(T) &= R_{\lambda}(T)I - IR_{\mu}(T) \\
 &= R_{\lambda}(T)(\mu I - T)R_{\mu}(T) - R_{\lambda}(T)(\lambda I - T)R_{\mu}(T) \\
 &= (\mu-\lambda)R_{\lambda}(T)R_{\mu}(T),
-\end{align*} and $$- (R_{\lambda}(T) - R_{\mu}(T)) = R_{\mu}(T) - R_{\lambda}(T) = (\lambda-\mu)R_{\mu}(T)R_{\lambda}(T),$$ so $$(\mu - \lambda)(R_{\lambda}(T)R_{\mu}(T) - R_{\mu}(T)R_{\lambda}(T)) = 0,$$ i.e. $R_{\lambda}(T)R_{\mu}(T) = R_{\mu}(T)R_{\lambda}(T)$.
+\end{align*} and $$- (R_{\lambda}(T) - R_{\mu}(T)) = R_{\mu}(T) - R_{\lambda}(T) = (\lambda-\mu)R_{\mu}(T)R_{\lambda}(T),$$ so $$(\mu - \lambda)(R_{\lambda}(T)R_{\mu}(T) - R_{\mu}(T)R_{\lambda}(T)) = 0,$$ hence $R_{\lambda}(T)R_{\mu}(T) = R_{\mu}(T)R_{\lambda}(T)$.
 \end{proof}
 
 \begin{cor}\label{spectrum-nonempty}
-    Let $T$ as in \ref{resolvent-analytic}, then the spectrum of $T$ is nonempty.
+    Let $T \in \mathscr{B}(\mathscr{H})$ where $\mathscr{H}$ is a Hilbert space. Then $\sigma(T) \neq \emptyset$.
 \end{cor}
 \begin{proof}
     Consider $\lambda \in \mathbb{C}$ such that $|\lambda| > \|T\|$. Then $$R_{\lambda}(T) = (\lambda I - T)^{-1} = \frac{1}{\lambda}\left( I - \frac{1}{\lambda}T \right)^{-1} = \frac{1}{\lambda}\left( I + \sum_{n=0}^{\infty} \lambda^{-n} T^{n} \right),$$ where the second equality is again by the geometric series expansion. Hence $\lim_{ |\lambda| \to \infty } \|R_{\lambda}(T)\| = 0$. Then by Liouville's Theorem if $R$ were analytic on $\mathbb{C}$, it would have to be the case that $R_{\lambda}(T) = 0$ everywhere, which is false. Thus $\rho(T) \neq \mathbb{C}$, i.e. $\sigma(T) = \mathbb{C} \setminus \rho(T) \neq \emptyset$.
@@ -191,14 +185,14 @@ R_{\lambda}(T) - R_{\mu}(T) &= R_{\lambda}(T)I - IR_{\mu}(T) \\
 \begin{thm}\label{spectral-radius}
     Let $A \in \mathscr{B}(X)$ where $X$ is a Banach space. Then $r(A) = \lim_{ n \to \infty } \|A^{n}\|^{1/n}$. If $X$ is a Hilbert space and $A$ is self-adjoint then $r(A) = \|A\|$.
 \end{thm}
-\begin{proof}
-    First we show that $\lim_{ n \to \infty } \|A^{n}\|^{1/n}$ exists. Consider the series $(a_{n})_{n=1}^{\infty}$ defined by $a_{n} := \log\|A^{n}\|$, and recall that $\|A^{m+n}\| \leq \|A^{m}\|\|A^{n}\|$, so $$a_{m+n} \leq a_{m} + a_{n}.$$ Let $n,m,p,q \in \mathbb{N}$ be such that $n = pm + q, 0 \leq q < m$. Then $a_{n} \leq a_{pm} + a_{q}$ and $a_{pm} \leq a_{(p-1)m} + a_{m} \leq \dots \leq pa_{m}$, so $$a_{n} \leq pa_{m} + a_{q}.$$ Now consider $\frac{a_{n}}{n} \leq \frac{p}{n}a_{m} + \frac{1}{n}a_{q}$ as $n \to \infty$ and $m, q$ are fixed. Since $\frac{1}{m} = \frac{p}{n} + \frac{q}{mn}$, we have $\frac{p}{n} \to \frac{1}{m}$ as $n \to \infty$, so $\limsup_{n \to \infty} \frac{a_{n}}{n} \leq \frac{a_{m}}{m}$ for any $0 \leq q < m$. Now let $m \to \infty$ and we can see that $\limsup_{n \to \infty}\frac{a_{n}}{n} \leq \liminf_{m \to \infty}\frac{a_{m}}{m}$. Thus $\left( \frac{a_{n}}{n} \right)_{n=1}^{\infty}$ is a convergent series, and by the monotonicity of the logarithm function $\lim_{ n \to \infty }\|A^{n}\|^{1/n}$ exists.
+\begin{proof} TODO reference
+    First we show that $\lim_{ n \to \infty } \|A^{n}\|^{1/n}$ exists. Consider the series $(a_{n})_{n=1}^{\infty}$ defined by $a_{n} := \log\|A^{n}\|$, and recall that $\|A^{m+n}\| \leq \|A^{m}\|\|A^{n}\|$, so $$a_{m+n} \leq a_{m} + a_{n}.$$ Let $n,m,p,q \in \mathbb{N}$ be such that $n = pm + q, 0 \leq q < m$. Then $a_{n} \leq a_{pm} + a_{q}$ and $a_{pm} \leq a_{(p-1)m} + a_{m} \leq \dots \leq pa_{m}$, so $$a_{n} \leq pa_{m} + a_{q}.$$ Now consider $\frac{a_{n}}{n} \leq \frac{p}{n}a_{m} + \frac{1}{n}a_{q}$ as $n \to \infty$ and $m, q$ are fixed. Since $n = pm + q$ and $0 \leq q < m$, we have $\frac{p}{n} = \frac{1}{n}\frac{n - q}{m} = \frac{1}{m} - \frac{q}{mn} \to \frac{1}{m}$ as $n \to \infty$, so $\limsup_{n \to \infty} \frac{a_{n}}{n} \leq \frac{a_{m}}{m}$. Now let $m \to \infty$ and we can see that $\limsup_{n \to \infty}\frac{a_{n}}{n} \leq \liminf_{m \to \infty}\frac{a_{m}}{m}$. Thus $\left( \frac{a_{n}}{n} \right)_{n=1}^{\infty}$ has a finite limit, and by the monotonicity of the logarithm function $\lim_{ n \to \infty }\|A^{n}\|^{1/n} < \infty$ exists.
     
-    Recall that for $|\lambda| > \|A\|$ we have $$R_{\lambda}(A) = (\lambda I - A)^{-1} = \frac{1}{\lambda}\left( I - \frac{1}{\lambda}A \right)^{-1} = \frac{1}{\lambda}\left( I + \sum_{n=0}^{\infty} \lambda^{-n} A^{n} \right)$$ from the proof of \ref{spectrum-nonempty}, and note that the final expression is the Laurent series of $R_{\lambda}(A)$, as a function of $\lambda$, around $\infty$. Let $C$ denote the radius of convergence of this Laurent series. Now note that $S := \mathbb{C} \setminus \{ \lambda \in \mathbb{C} \, | \, |\lambda| \leq r(A) \} \subseteq \rho(A)$, and we have shown that $R_{\lambda}(A)$ is analytic at all $\lambda \in \rho(A)$, so its series expansion converges outside the disc $\{ \lambda \in \mathbb{C} \, | \, |\lambda| \leq r(A) \}$, hence $\frac{1}{r(A)} \leq C$ through a change of variable to $\frac{1}{\lambda}$ and considering the series around $0$.
+    Recall that for $|\lambda| > \|A\|$ we have $$R_{\lambda}(A) = (\lambda I - A)^{-1} = \frac{1}{\lambda}\left( I - \frac{1}{\lambda}A \right)^{-1} = \frac{1}{\lambda}\left( I + \sum_{n=0}^{\infty} \lambda^{-n} A^{n} \right)$$ from the proof of \ref{spectrum-nonempty}, and note that the final expression is the Laurent series of $R_{\lambda}(A)$, as a function of $\lambda$, around $\infty$. Let $C$ denote the radius of convergence of this Laurent series. Now note that $S := \mathbb{C} \setminus \{ \lambda \in \mathbb{C} \, | \, |\lambda| \leq r(A) \} \subseteq \rho(A)$, and we have shown that $R: \lambda \mapsto R_\lambda(A)$ is analytic at all $\lambda \in \rho(A)$, so its series expansion converges outside the disc $\{ \lambda \in \mathbb{C} \, | \, |\lambda| \leq r(A) \}$, hence $\frac{1}{r(A)} \leq C$ through a change of variable to $\frac{1}{\lambda}$ and considering the series around $0$.
 
     Additionally, we know that any Laurent series must converge absolutely on its disc of convergence, i.e. $R_{\lambda}(A)$ must exist there. This eliminates all points of the spectrum from being contained in the disc of convergence, so $C \geq \frac{1}{r(A)}$ as none of $\left\{  \frac{1}{\lambda} \, | \, \lambda \in \mathbb{C}, \lambda \leq r(A) \right\}$ can lie on the disc of convergence. Thus $r(A) = \frac{1}{C}$.
     
-    Now recall the Cauchy-Hadamard Theorem, which states that the radius of convergence $c$ of a power series $f(z)= \sum_{n=0}^{\infty} b_{n}(z-a)^{n}$ with $b_{n}, a \in \mathbb{C}$ is given by $\frac{1}{c} = \limsup_{n \to \infty} |b_{n}|^{1/n}$. In the case of our power series $\left( I + \sum_{n=0}^{\infty} \left( \frac{1}{\lambda} \right)^{n}A^{n} \right)$ in the variable $\frac{1}{\lambda}$, the coefficients $b_{n}$ are replaced by $A^{n}$, and the operator-valued Cauchy-Hadamard Theorem gives $\frac{1}{C} = \limsup_{n \to \infty} \|A^{n}\|^{1/n}$. Finally, have already seen that $\lim_{ n \to \infty }\|A^{n}\|^{1/n}$ exists, in which case it must be equal to $\frac{1}{C}$ by our previous argument.
+    Now recall the Cauchy-Hadamard Theorem, which states that the radius of convergence $C$ of a power series $f(z)= \sum_{n=0}^{\infty} b_{n}(z-a)^{n}$ with $b_{n}, a \in \mathbb{C}$ is given by $\frac{1}{C} = \limsup_{n \to \infty} |b_{n}|^{1/n}$. In the case of our power series $\left( I + \sum_{n=0}^{\infty} \left( \frac{1}{\lambda} \right)^{n}A^{n} \right)$ in the variable $\frac{1}{\lambda}$, the coefficients $b_{n}$ are replaced by $A^{n}$, and the operator-valued Cauchy-Hadamard Theorem gives $\frac{1}{C} = \limsup_{n \to \infty} \|A^{n}\|^{1/n}$. Finally, have already seen that $\lim_{ n \to \infty }\|A^{n}\|^{1/n}$ exists, in which case it must be equal to $\frac{1}{C}$ by our previous argument.
 
     Now let $X$ be a Hilbert space and $A$ be self-adjoint. Then $\|A\|^{2} = \|A^{*}A\| = \|A^{2}\|$ where the first equality is a standard result for adjoints. By induction $\|A^{2^{n}}\| = \|A\|^{2^{n}}$ for $n \in \mathbb{N}$. Thus $r(A) = \lim_{ k \to \infty } \|A^{k}\|^{1/k} = \lim_{ n \to \infty } \|A^{2^{n}}\|^{2^{-n}} = \|A\|$.
 \end{proof}
@@ -211,10 +205,10 @@ R_{\lambda}(T) - R_{\mu}(T) &= R_{\lambda}(T)I - IR_{\mu}(T) \\
 \end{proof}
 
 \begin{lem}\label{adjoint-ker-orth-to-operator-range}
-    For a linear operator $T$ on a Hilbert space $\mathscr{H}$, we have $\ker(T^{*}) = \Ran(T)^{\perp}$.
+    For a (not necessarily bounded) linear operator $T$ on a Hilbert space $\mathscr{H}$, we have $\ker(T^{*}) = \Ran(T)^{\perp}$.
 \end{lem}
 \begin{proof}
-    In order to show this, we need to see that $\forall \phi \in \ker(T^{*}): \forall \psi \in \Ran(T): \langle \phi, \psi \rangle = 0$. Note that $\forall \psi \in \Ran(T): \exists \xi \in \mathscr{H}: \psi = T\xi$. And then $\langle \phi, \psi \rangle = \langle \phi, T\xi \rangle = \langle T^{*}\phi, \xi \rangle = \langle 0, \xi \rangle = 0$.
+    In order to show this, we need to see that $\forall \phi \in \ker(T^{*}): \forall \psi \in \Ran(T): \langle \phi, \psi \rangle = 0$. Note that $\forall \psi \in \Ran(T): \exists \xi \in \mathscr{H}: \psi = T\xi$. And then for $\phi \in \ker{T^*}$, $\psi \in \Ran(T)$ we have $\langle \phi, \psi \rangle = \langle T\xi,\psi \rangle = \langle \xi,T^{*}\psi \rangle = \langle \xi, 0 \rangle = 0$.
     
     TODO [linear algebra - The range of $T^*$ is the orthogonal complement of $\ker(T)$ - Mathematics Stack Exchange](https://math.stackexchange.com/questions/318136/the-range-of-t-is-the-orthogonal-complement-of-kert?rq=1)
 \end{proof}
@@ -235,12 +229,12 @@ R_{\lambda}(T) - R_{\mu}(T) &= R_{\lambda}(T)I - IR_{\mu}(T) \\
 \end{thm}
 \begin{proof}
     Let $\lambda, \mu \in \mathbb{R}$ so 
-    \begin{align}
-        \|(T - (\lambda + i \mu))x\|^{2} &= \|(T - \lambda I)x\|^{2} + \|-i \mu x\|^{2} + \langle Tx, -i \mu x \rangle +            \langle -i \mu x, Tx \rangle \\
+    \begin{align*}
+        \|(T - (\lambda + i \mu))x\|^{2} &= \|(T - \lambda I)x\|^{2} + \|-i \mu x\|^{2} + \langle Tx, -i \mu x \rangle + \langle -i \mu x, Tx \rangle \\
         &= \|(T - \lambda I)x\|^{2} +\mu^{2}\|x\|^{2} \\
         &\geq \mu^{2}\|x\|^{2}.
-    \end{align}
-    Suppose $\mu \neq 0$. Then the kernel of $T - (\lambda + i \mu)I$ is empty and thus $\lambda + i \mu$ is not an eigenvalue. So $T - (\lambda + i \mu)I$ has a bounded inverse on its range. Additionally, in this case $\Ran(T - (\lambda + i \mu)I)$ is closed, so $\lambda + i \mu$ cannot be in the continuous spectrum. The last possibility is that $\lambda + i \mu$ is in the residual spectrum of $T$, but $T$ is self-adjoint, but then by the previous lemma $\lambda + i \mu$ is also in the point spectrum of $T^{*} = T$, which is a contradiction. Hence $\mu = 0$, and by the previous statement the residual spectrum of $T$ must be empty.
+    \end{align*}
+    Suppose $\mu \neq 0$. Then the kernel of $T - (\lambda + i \mu)I$ is empty and thus $\lambda + i \mu$ is not an eigenvalue. So $T - (\lambda + i \mu)I$ has a bounded inverse on its range. Additionally, in this case $\Ran(T - (\lambda + i \mu)I)$ is closed, so $\lambda + i \mu$ cannot be in the continuous spectrum. The last possibility is that $\lambda + i \mu$ is in the residual spectrum of $T$, but $T$ is self-adjoint, so by the previous lemma $\lambda + i \mu$ is also in the point spectrum of $T^{*} = T$, which is a contradiction. Hence $\mu = 0$, and by the previous statement the residual spectrum of $T$ must be empty.
 \end{proof}
 
 \begin{defn}
@@ -258,7 +252,7 @@ R_{\lambda}(T) - R_{\mu}(T) &= R_{\lambda}(T)I - IR_{\mu}(T) \\
     Theorem \ref{pos-selfadj} holds for general, so possibly unbounded, linear operators $A,B$. We will introduce unbounded operators in a later chapter.
 \end{rem}
 
-\begin{lem}
+\begin{lem}\label{spectr-condition}
     If $T \in \mathscr{B}(\mathscr{H})$ for a Hilbert space $\mathscr{H}$ and there is a sequence $(\psi_{n})_{n=1}^{\infty} \subset \mathscr{H}$ such that $\|\psi_{n}\| = 1$ for all $n$ and $(T-\lambda)\psi_{n} \to 0$ as $n \to 0$, then $\lambda \in \sigma(T)$.
 \end{lem}
 \begin{proof}
@@ -267,14 +261,14 @@ R_{\lambda}(T) - R_{\mu}(T) &= R_{\lambda}(T)I - IR_{\mu}(T) \\
 
 \chapter{The continuous functional calculus for bounded self-adjoint operators}
 
-TODO: Important note, see pg. 222 of Reed-Simon 1: "The special property of self-adjoint (more generally, normal) operators is that $\|P(A)\| = \sup_{\lambda \in \sigma(A)}|P(\lambda)|$". In particular, the polynomial functional calculus works for any operator
+% TODO: Important note, see pg. 222 of Reed-Simon 1: "The special property of self-adjoint (more generally, normal) operators is that $\|P(A)\| = \sup_{\lambda \in \sigma(A)}|P(\lambda)|$". In particular, the polynomial functional calculus works for any operator
 
-In order to proceed with the moment problem, we first demonstrate that continuous functions on the spectrum of a bounded self-adjoint operator can, in a sense, be evaluated at the operator, giving rise to a functional calculus for bounded self-adjoint operators. In later sections we will extend this functional calculus to a pair of commuting bounded self-adjoint operators, and later to normal bounded operators. Such a functional calculus will give rise to a bounded linear functional $f \mapsto \langle \psi, f(A) \psi \rangle$, and through the Riesz-Markov-Kakutani Representation Theorem for positive linear functionals, to measures, called spectral measures, corresponding to each $\psi$, on the spectrum of our operator. The main theorem of this sections is as follows:
+In order to proceed with the moment problem, we first demonstrate that continuous functions on the spectrum of a bounded self-adjoint operator can, in a sense, be evaluated at the operator, giving rise to a functional calculus for bounded self-adjoint operators. In later chapters we will extend this functional calculus to a pair of commuting bounded self-adjoint operators, and later to normal bounded operators. Such a functional calculus will allow us to define $f \mapsto \langle f(A) \psi, \psi \rangle$, and through the Riesz-Markov-Kakutani Representation Theorem will give rise to the so-called spectral measures of $A$, supported on the spectrum. We will first state the main theorem of this chapter, then discuss the main ideas behind the proof before proving it.
 
 \begin{thm}
-    For a commuting self-adjoint operator $A$ on a Hilbert space $\mathscr{H}$, and $C(\sigma(A))$ the space of continuous functions $\sigma(A) \to \mathbb{C}$ TODO: check in meeting under the supremum norm, there is a unique map $\phi: C(\sigma(A)) \to \mathscr{L}(\mathscr{H})$ such that:
+    For a commuting self-adjoint operator $A$ on a Hilbert space $\mathscr{H}$, and $C(\sigma(A))$ the space of continuous functions $\sigma(A) \to \mathbb{C}$ under the supremum norm, there is a unique map $\phi: C(\sigma(A)) \to \mathscr{B}(\mathscr{H})$ such that:
     \begin{itemize}
-        \item $\phi$ is a $*$-homomorphism, i.e.:
+        \item $\phi$ is a $*$-homomorphism, which means the following:
         \begin{itemize}
             \item $\phi(f(A)g(A)) = \phi(f(A))\phi(g(A))$,
             \item $\phi(\lambda f) = \lambda \phi(f)$,
@@ -289,22 +283,24 @@ In order to proceed with the moment problem, we first demonstrate that continuou
     \end{itemize}
 \end{thm}
 
-Occasionally if $f \in C(\sigma(A))$, we will write $f(A)$ to denote $\phi(f)$.
+We will use both $f(A)$ and $\phi(f)$ interchangeably to mean the function $f \in C(\sigma(A))$ evaluated at the operator $A$ through the functional calculus.
 
 We start our construction of this functional calculus by defining polynomials of bounded self-adjoint operators. The mapping of polynomials on the spectrum of a bounded self-adjoint operator to bounded operators ends up having the spectral mapping property, as well as being an isometry. This will enable us to extend our mapping to the space of continuous functions on the spectrum through the BLT Theorem.
 
-Suppose we had a self-adjoint bounded operator $A: \mathscr{H} \to \mathscr{H}$ and a $*$-homomorphism $\phi'_{A}: \mathbb{C}[X] \to \mathscr{L}(\mathscr{H})$ such that $\phi'_{A}(X) = A$. The properties of $*$-homomorphisms then fully determine what $\phi'_{A}$ must be, $\phi'_{A}: P = \sum_{i=0}^{d} a_{i} X^{i} \mapsto P(A) := \sum_{i=0}^{d} a_{i} A^{i}$ where $A^{i} := \underbrace{ A \circ \dots \circ A }_{ i \text{ times} }$.
+Suppose we had a self-adjoint bounded operator $A: \mathscr{H} \to \mathscr{H}$ and a $*$-homomorphism $\phi'_{A}: \mathbb{C}[X] \to \mathscr{B}(\mathscr{H})$ such that $\phi'_{A}(X) = A$. The properties of $*$-homomorphisms then fully determine what $\phi'_{A}$ must be, $\phi'_{A}: P = \sum_{i=0}^{d} a_{i} X^{i} \mapsto P(A) := \sum_{i=0}^{d} a_{i} A^{i}$ where $A^{i} := \underbrace{ A \circ \dots \circ A }_{ i \text{ times} }$.
 
 \begin{lem}[Spectral Mapping]\label{spectral-mapping-polyn}
     For $P \in \mathbb{C}[X]$ and $P(A)$ as before, we have $\sigma(P(A)) = \{ P(\lambda) \, | \, \lambda \in \sigma(A) \}$.
 \end{lem}
 \begin{proof}
+    TODO ref R-S
+
     First we show $P(\sigma(A)) \subseteq \sigma(P(A))$. Suppose $\lambda \in \sigma(A)$. Then $x = \lambda$ is a root of the polynomial $P(x) - P(\lambda)$. Therefore we can factor $P(x) - P(\lambda) = (x - \lambda)Q(x)$. Evaluating this polynomial at $x = A$, we can see it has $A - \lambda$ as a factor $P(A) - P(\lambda) = (A - \lambda)Q(A)$. And $\lambda \in \sigma(A)$, therefore $A - \lambda$ is not invertible, so $P(A) - P(\lambda)$ is not invertible either. Hence $P(\lambda) \in \sigma(P(A))$.
 
     Next we show $\sigma(P(A)) \subseteq P(\sigma(A))$. Suppose $\rho \in \sigma(P(A))$ and $\lambda_{1},\dots,\lambda_{n}$ are the roots of $P(x) - \rho$. Then we have the factoring $P(x) - \rho = \gamma(x - \lambda_{1})\dots(x - \lambda_{n})$. So if none of the roots $\lambda_{i}$ are in $\sigma(A)$ then the inverse $(P(x) - \rho)^{-1} = \gamma^{-1}(x - \lambda_{1})^{-1}\dots(x - \lambda_{n})^{-1}$ exists, contradicting our assumption that $\rho \in \sigma(P(A))$. Hence $\lambda_{i} \in \sigma(A)$ for one or more $i \in \{ 1,\dots,n \}$, and then $\rho = P(\lambda_{i})$ for some such $i$.
 \end{proof}
 
- TODO: this functional calculus is actually only for real-valued functions. we can simply introduce complex numbers for the polynomial spectral mapping, but the isometry property (shown below) is only shown for $\overline{P}P$ which is always real-valued??? ask again at meeting
+% TODO: this functional calculus is actually only for real-valued functions. we can simply introduce complex numbers for the polynomial spectral mapping, but the isometry property (shown below) is only shown for $\overline{P}P$ which is always real-valued??? ask again at meeting
 
 \begin{lem}
     For a bounded self-adjoint operator $A$ we have the equality $$\|P(A)\| = \sup_{\lambda \in \sigma(A)} |P(\lambda)|.$$
@@ -332,8 +328,6 @@ Next we need to see that $\mathbb{C}[X]$ on $\sigma(A)$ is dense in $C(\sigma(A)
 
 TODO: can probably just cite the complex image case to begin with
 
-For the rest of this section we will be referring back to the notation introduced in Theorem TODO.
-
 \begin{lem}
     The polynomials $\mathbb{C}[X]$ on $\sigma(A)$ are dense in $C(\sigma(A))$.
 \end{lem}
@@ -345,7 +339,7 @@ For the rest of this section we will be referring back to the notation introduce
     $\phi: C(\sigma(A)) \to \mathscr{B}(\mathscr{H})$ is an isometric $*$-homomorphism, has the property that $A\psi = \lambda \psi$ for $\psi \in \mathscr{H}$ implies $\phi(f)\psi = f(\lambda)\psi$, and its restriction to real-valued functions is positive.
 \end{lem}
 \begin{proof}
-    The isometry property of $\phi'_{A}$ implies that $\phi'_{A}$ is continuous. Then the BLT Theorem implies that $\phi'_{A}$ has a unique extension $\tilde{\phi}: C(\sigma(A)) \to \mathscr{L}(\mathscr{H})$ and that $\tilde{\phi}$ is also continuous. By continuity, $\tilde{\phi}$ is an isometric $*$-homomorphism. Since $\phi(P)\psi = P(\lambda)\psi$, we can again apply continuity to see that $A\psi = \lambda \psi$ implies $\phi(f)\psi = f(\lambda)\psi$ for $\lambda \in \sigma(A)$, $\psi \in \mathscr{H}$. Now if $f \geq 0$, i.e. $f$ is real-valued and non-negative, then there exists some real-valued $g \in \mathbb{C}(\sigma(A))$ with $f = g^{2}$. Since $g$ is real-valued, $\phi(g)$ is self-adjoint by the same argument as in the proof of Thm. \ref{pos-selfadj}, hence $\phi(f) = \phi(g)^{2} \geq 0$ by the lemma just mentioned.
+    The isometry property of $\phi'_{A}$ implies that $\phi'_{A}$ is continuous. Then the BLT Theorem implies that $\phi'_{A}$ has a unique extension $\tilde{\phi}: C(\sigma(A)) \to \mathscr{B}(\mathscr{H})$ and that $\tilde{\phi}$ is also continuous. By continuity, $\tilde{\phi}$ is an isometric $*$-homomorphism. Since $\phi(P)\psi = P(\lambda)\psi$, we can again apply continuity to see that $A\psi = \lambda \psi$ implies $\phi(f)\psi = f(\lambda)\psi$ for $\lambda \in \sigma(A)$, $\psi \in \mathscr{H}$. Now if $f \geq 0$, i.e. $f$ is real-valued and non-negative, then there exists some real-valued $g \in \mathbb{C}(\sigma(A))$ with $f = g^{2}$. Since $g$ is real-valued, $\phi(g)$ is self-adjoint by the same argument as in the proof of Thm. \ref{pos-selfadj}, hence $\phi(f) = \phi(g)^{2} \geq 0$ by Thm. \ref{pos-selfadj}.
 \end{proof}
 
 TODO: check proof of this theorem
@@ -358,17 +352,38 @@ TODO: check proof of this theorem
 
     TODO [operator theory - Proving the spectral mapping theorem via the continuous functional calculus - significant progress - Mathematics Stack Exchange](https://math.stackexchange.com/questions/3853234/proving-the-spectral-mapping-theorem-via-the-continuous-functional-calculus-si)
 
-    If $\lambda \in \Ran(f) = f(\sigma(A))$ then we want to show that for any $\epsilon > 0$ there exists some $\psi \in \mathscr{H}$ with $\|\psi\| = 1$ and $\|(\phi(f) - \lambda)\psi\| < \epsilon$. First, fix $\epsilon > 0$. Then note that since $\lambda \in f(\sigma(A))$, there exists some $x \in \sigma(A)$ such that $f(x) - \lambda = 0$, and by continuity of $f$, also $|f(x) - \lambda| < \frac{\epsilon}{2}$ in some neighbourhood $N \subseteq \sigma(A)$ of $x$. Now let $g \in C(\sigma(A))$ such that $g$ vanishes outside of the neighbourhood $N$, $g(x) = 1$ and $|g(y)| \leq 1$ for $y \in \sigma(A)$. Then $\|(f(x) - \lambda)g(x)\| < \frac{\epsilon}{2}$, and since $\phi$ is an isometry, $\|(\phi(f) - \lambda)\phi(g)\| < \frac{\epsilon}{2}$ and $\|\phi(g)\| = 1$. That $\|\phi(g)\| = 1$ implies that there exists some $\xi \in \mathscr{H}$ with $\|\xi\| = 1$ and $|1 - \|\phi(g)\xi\|| < \frac{\epsilon}{2}$. So $\left\|(\phi(f) - \lambda)\left(\frac{1}{\|\phi(g)\xi\|}\phi(g)\xi\right)\right\| = \frac{1}{\|\phi(g)\xi\|} \|(\phi(f) - \lambda)\phi(g)\xi\| < \frac{\epsilon}{2}$, and then $$\|(\phi(f) - \lambda)\phi(g)\xi\| < \frac{\epsilon}{2}\|\phi(g)\xi\| \leq \frac{\epsilon}{2}\left( 1 + \frac{\epsilon}{2} \right) = \frac{\epsilon}{2} + \left( \frac{\epsilon}{2} \right)^{2} < \epsilon$$ (for $\epsilon < 2$, but in the case of $\epsilon \geq 2$ we can simply substitute $1$ in the place of $\epsilon$ on the left-hand side). Now set $\psi = \frac{1}{\|\phi(g)\xi\|}\phi(g)\xi$ and we have what we wanted to show.
+    If $\lambda \in \Ran(f) = f(\sigma(A))$ then we want to show that for any $\epsilon > 0$ there exists some $\psi \in \mathscr{H}$ with $\|\psi\| = 1$ and $\|(\phi(f) - \lambda)\psi\| < \epsilon$, after which we are done by Lemma \ref{spectr-condition}. First, fix $\epsilon > 0$. Then note that since $\lambda \in f(\sigma(A))$, there exists some $x_0 \in \sigma(A)$ such that $f(x_0) - \lambda = 0$, and, by continuity of $f$, also $|f(x) - \lambda| < \frac{\epsilon}{2}$ in some neighbourhood $N(x_0) \subseteq \sigma(A)$ of $x_0$. Now let $g \in C(\sigma(A))$ such that $g$ vanishes outside of the neighbourhood $N(x_0)$, $g(x) = 1$ and $|g(y)| \leq 1$ for $y \in \sigma(A)$. Then $\|(f(x) - \lambda)g(x)\| < \frac{\epsilon}{2}$, and since $\phi$ is an isometric $*$-homomorphism, $\|(\phi(f) - \lambda)\phi(g)\| = \|\phi((f - \lambda)g)\| < \frac{\epsilon}{2}$ and $\|\phi(g)\| = 1$. That $\|\phi(g)\| = 1$ implies that there exists some $\xi \in \mathscr{H}$ with $\|\xi\| = 1$ and $|1 - \|\phi(g)\xi\|| < \frac{\epsilon}{2}$. So
+    % $$\left\|(\phi(f) - \lambda)\left(\frac{1}{\|\phi(g)\xi\|}\phi(g)\xi\right)\right\| \leq \|\phi(f) - \lambda\| < \frac{\epsilon}{2}$$
+    % and
+    $$\|(\phi(f) - \lambda)\phi(g)\xi\| < \frac{\epsilon}{2}\|\phi(g)\xi\| \leq \frac{\epsilon}{2}\left( 1 + \frac{\epsilon}{2} \right) = \frac{\epsilon}{2} + \left( \frac{\epsilon}{2} \right)^{2} < \epsilon$$
+    (for $\epsilon < 2$, but in the case of $\epsilon \geq 2$ we can simply substitute $1$ in the place of $\epsilon$ in $\frac{\epsilon}{2}\|\phi(g)\xi\|$). Now set $\psi = \frac{1}{\|\phi(g)\xi\|}\phi(g)\xi$ and we have what we wanted to show.
 
-    Finally let $\psi_{n}$ be the $\psi$ corresponding to $\epsilon = \frac{1}{n}$ in the previous part. This yields a sequence of unit vectors such that $\|(\phi(f) - \lambda)\psi_{n}\| \to 0$ as $n \to \infty$. Thus $\lambda \in \sigma(f(A))$, which shows that $f(\sigma(A)) \subseteq \sigma(f(A))$. TODO: check at meeting
+    Finally let $\psi_{n}$ be the $\psi$ corresponding to $\epsilon = \frac{1}{n}$ in the previous part. This yields a sequence of unit vectors such that $\|(\phi(f) - \lambda)\psi_{n}\| \to 0$ as $n \to \infty$. Thus $\lambda \in \sigma(f(A))$, which shows that $f(\sigma(A)) \subseteq \sigma(f(A))$.
 \end{proof}
 
-And with this we have shown all the claimed properties of the continuous functional calculus for bounded self-adjoint operators. To finish this section, we show a special case of the spectral theorem for bounded self-adjoint operators. Morally speaking this provides us, through a vector $\psi \in \mathscr{H}$ that is cyclic in $A$ (we define below what this means precisely), with a kind of inverse to the map $\phi$ corresponding to the functional calculus. More concretely, later on we will be interested in linear functionals of the form $f \mapsto \langle \psi, f(A) \psi \rangle$, and the unitary $U$ we construct in the following lemma will provide us with a way to pass from $f(A)\psi$ back to $f$.
+And with this we have shown all the claimed properties of the continuous functional calculus for bounded self-adjoint operators. To finish this chapter, we show a special case of the spectral theorem for bounded self-adjoint operators. Morally speaking this provides us, through a vector $\psi \in \mathscr{H}$ that is cyclic in $A$ (we define below what this means precisely), with a kind of inverse to the map $\phi$ corresponding to the functional calculus. However, first we recall the following definition.
 
-Let $A$ be a bounded self-adjoint operator on a Hilbert space $\mathscr{H}$, and $\psi \in \mathscr{H}$. Consider the bounded linear functional $\ell: C(\sigma(A)) \to \mathbb{C}: f \mapsto \langle \psi, f(A) \psi \rangle$. The Riesz-Markov-Kakutani Representation Theorem then gives that there exists a unique, finite, complex-valued, Borel-regular measure $\mu_{\psi}$ on $\sigma(A)$ satisfying $\langle \psi, f(A)\psi \rangle = \int _{\sigma(A)} f(\lambda) \, d\mu_{\psi}(\lambda)$. Additionally, we recall that $\phi$ is a positive operator on the real-valued continuous functions $C^{\mathbb{R}}(\sigma(A))$, meaning that the restriction $\ell: C^{\mathbb{R}}(\sigma(A)) \to \mathbb{C}$ is positive as well, so by the special case of the Riesz-Markov-Kakutani Representation Theorem for positive bounded linear functionals, $\int _{\sigma(A)} f(\lambda) \, d\mu_{\psi}(\lambda) \in \mathbb{R}$ whenever $f \in C^{\mathbb{R}}(\sigma(A))$.
+\begin{defn}
+    TODO: cite Rudin For a compact space $X$, a linear functional $\ell: C(X) \to \mathbb{C}: f \mapsto \ell(f)$ is positive if and only if $f(X) \subseteq [0,\infty)$ implies $\ell(f) \in [0, \infty)$.
+\end{defn}
+
+% More concretely, later on we will be interested in linear functionals of the form $f \mapsto \langle f(A) \psi, \psi \rangle$, and the unitary $U$ we construct in the following lemma will provide us with a way to pass from $f(A)\psi$ back to $f$.
+
+Let $A$ be a bounded self-adjoint operator on a Hilbert space $\mathscr{H}$, and $\psi \in \mathscr{H}$. Consider the bounded linear functional $\ell: C(\sigma(A)) \to \mathbb{C}: f \mapsto \langle f(A) \psi, \psi \rangle$. Additionally, we recall that $\phi$ is a positive operator on the real-valued continuous functions, meaning that $\ell: C(\sigma(A)) \to \mathbb{C}$ is a positive linear functional. The Riesz-Markov-Kakutani Representation Theorem then gives that there exists a unique, finite, positive, Borel-regular measure $\mu_{\psi}$ on $\sigma(A)$ satisfying $\langle f(A)\psi, \psi \rangle = \int _{\sigma(A)} f(\lambda) \, d\mu_{\psi}(\lambda)$. 
+
+% , so by the special case of the Riesz-Markov-Kakutani Representation Theorem for positive bounded linear functionals, for all $f \in C(\sigma(A))$ we have $\int _{\sigma(A)} f(\lambda) \, d\mu_{\psi}(\lambda) \in \mathbb{R}$.
+% whenever $f \in C^{\mathbb{R}}(\sigma(A))$.
 
 \begin{defn}
     We call such $\mu_{\psi}$ the spectral measure of $A$ corresponding to $\psi$.
+\end{defn}
+
+\begin{rem}\label{extended-spectral-measures}
+    Through the Polarization Identity we can define $f \mapsto \langle f(A)\phi,\psi \rangle$  for any $\phi, \psi \in \mathscr{H}$. We can extend the class of spectral measures to include the measures corresponding to these linear functionals. Such a spectral measure is denoted $\mu_{\phi,\psi}$.
+\end{rem}
+
+\begin{defn}\label{measurable-func-calc}
+    As spectral measures are Borel measures, they allow us to extend the functional calculus to bounded Borel-measurable functions. Let $g$ be a bounded Borel-measurable function on $\sigma(A)$ for some self-adjoint operator $A$ on a Hilbert space $\mathscr{H}$. Now we can define $g(A)\phi$ for any $\phi \in \mathscr{H}$ by the Riesz Representation Theorem as the unique element $g(A)\phi$ representing the bounded linear functional $\ell_\phi: \psi \mapsto \int_{\sigma(A)} g(A) \, d\mu_{\phi,\psi} =: \langle g(A)\phi, \psi \rangle$. The properties of this extended functional calculus are omitted in the interest of brevity.
 \end{defn}
 
 \begin{defn}
@@ -379,21 +394,31 @@ Let $A$ be a bounded self-adjoint operator on a Hilbert space $\mathscr{H}$, and
     Let $A$ be a bounded self-adjoint operator with a cyclic vector $\psi \in \mathscr{H}$. Then there is a unitary operator $U: \mathscr{H} \to L^{2}(\sigma(A),\mu_{\psi})$, where $\mu_{\psi}$ is the spectral measure corresponding to $\psi$, such that $$(UAU^{-1}f)(\lambda) = \lambda f(\lambda),$$where equality is meant in the space $L^{2}(\sigma(A),\mu_{\psi})$. In other words, $\mathscr{H}$ is isomorphic to $L^2(\sigma(A),\mu_\psi)$ through $U$.
 \end{thm}
 \begin{proof}
-    TODO:cite Define $U$ by $U\phi(f)\psi := f$ for $f \in C(\sigma(A))$. This results in a well-defined map, since $$\|\phi(f)\psi\|^{2} = \langle \psi, \phi^{*}(f)\phi(f)\psi \rangle = \langle \psi, \phi(\overline{f}f)\psi \rangle = \int _{\sigma(A)} |f(\lambda)|^{2} \, d\mu_{\psi}(\lambda).$$ Therefore, if $f=g, \mu_{\psi}$-a.e., then $\phi(f)\psi = \phi(g)\psi$. Thus $U$ is well-defined on $D := \{ \phi(f)\psi \, | \, f \in C(\sigma(A)) \}$, and $U$ is also norm-preserving. Recall that $\psi$ is cyclic in $A$, so $\overline{D} = \mathscr{H}$ and thus the BLT Theorem yields an isometric extension $U: \mathscr{H} \to L^{2}(\sigma(A), \mu_{\psi})$, and because $C(\sigma(A))$ is dense in $L^{2}(\sigma(A),\mu_{\psi})$, $U$ is onto. Finally, if $f \in C(\sigma(A))$, then \begin{align*}
+    TODO:cite Define $U$ by $U\phi(f)\psi := f$ for $f \in C(\sigma(A))$. This results in a well-defined map, since $$\|\phi(f)\psi\|^{2} = \langle \phi^{*}(f)\phi(f)\psi, \psi \rangle = \langle \phi(\overline{f}f)\psi, \psi \rangle = \int _{\sigma(A)} |f(\lambda)|^{2} \, d\mu_{\psi}(\lambda).$$ Therefore, if $f=g, \mu_{\psi}$-almost everywhere, then $\phi(f)\psi = \phi(g)\psi$. Thus $U$ is well-defined on $D := \{ \phi(f)\psi \, | \, f \in C(\sigma(A)) \}$, and $U$ is also norm-preserving. Recall that $\psi$ is cyclic in $A$, so $\overline{D} = \mathscr{H}$ and then the BLT Theorem yields an isometric extension $U: \mathscr{H} \to L^{2}(\sigma(A), \mu_{\psi})$, and because $C(\sigma(A))$ is dense in $L^{2}(\sigma(A),\mu_{\psi})$, this extension must be onto, as $U: \mathscr{H} \to C(\sigma(A))$ is norm-preserving. Finally, if $f \in C(\sigma(A))$, then \begin{align*}
         (UAU^{-1}f)(\lambda) &= (UA\phi(f)\psi)(\lambda) \\
         &= (U\phi(xf)\psi)(\lambda) \\
         &= \lambda f(\lambda).
     \end{align*} But by continuity of $U$ and $\phi$ this also holds for $f \in L^{2}(\sigma(A),\mu_{\psi})$.
 \end{proof}
 
-TODO: cite full spectral theorem for completeness?
+% TODO: cite full spectral theorem for completeness?
 
 \chapter{Uniqueness in the bounded case}
 
-TODO: intro and summary
+Now we have everything in place to show necessary and sufficient conditions on the uniqueness of solutions to the Hamburger Moment Problem in the case that $\mathcal{H}$ is a semi inner product on $\mathbb{C}[X]$, and $A: \mathbb{C}[X] \to \mathbb{C}[X]: P \mapsto XP$ is bounded under the seminorm induced by $\mathcal{H}$. Necessary and sufficient conditions for when $\mathcal{H}$ is a semi inner product on $\mathbb{C}[X]$ will be given in Chapter $7$.
+ 
+Our main theorem for this chapter is:
+
+\begin{thm}\label{uniqueness}
+    Whenever $\mathcal{H}$ is a semi inner product on $\mathbb{C}[X]$, and $A: \mathbb{C}[X] \to \mathbb{C}[X]: P \mapsto XP$ is bounded under the seminorm induced by $\mathcal{H}$, and there exists a measure $\mu$ on $\mathbb{R}$ satisfying the conditions of the Hamburger Moment Problem, then $\mu$ is unique as such.
+\end{thm}
+
+The sketch of the proof goes as follows: We first show that given there exists a measure $\mu$ satisfying the Hamburger Moment Problem, $A$ is bounded if and only if $\mu$ is compactly supported. Then we consider two measures $\mu$ and $\nu$ satisfying the conditions of the moment problem. We will find, through the special case of the Spectral Theorem \ref{spectral-mo}, that both $\mu$ and $\nu$ must be equal to the spectral measure of $A$ corresponding to the constant function $1$, guaranteeing uniqueness.
+
+% Then we take the spaces $L^{2}([a,b], \mu)$ and $L^{2}([a,b], \nu)$, and extend $A$ to these spaces. Finally we find the constant function $\mathds{1}(x) = 1$ to be cyclic in $A$, yielding TODO find an isomorphism $L^{2}([a,b], \mu) \cong L^2(\sigma(A), \mu_\mathds{1}) \cong L^{2}([a,b], \nu)$, implying $mu = \mu_\mathds{1} = \nu$.
 
 \begin{lem}\label{A-bound}
-    $A$ is bounded if and only if $\sup_{n \in \mathbb{N} \cup \{ 0 \}}\frac{m_{2(n+1)}}{m_{2n}}$ exists.
+    $A$ is bounded if and only if $\sup_{n \in \mathbb{N} \cup \{ 0 \}}\frac{m_{2(n+1)}}{m_{2n}} < \infty$.
 \end{lem}
 \begin{proof}
     We calculate:
@@ -408,7 +433,7 @@ TODO: intro and summary
     Therefore $\|A\| = \sup_{n \in \mathbb{N} \cup \{ 0 \}} \left|\frac{m_{2(n+1)}}{m_{2n}}\right|$ if $\sup_{n \in \mathbb{N} \cup \{ 0 \}} \left|\frac{m_{2(n+1)}}{m_{2n}}\right| \in \mathbb{R}$ exists, and if it does not exist then $A$ is unbounded.
 \end{proof}
 
-Suppose we know that sufficient conditions hold for the existence of some measure $\mu$ with $(m_{n})_{n=1}^{\infty}$ as its sequence of moments, then we can show that for bounded $A$ this measure is unique. For this it will be helpful to have another condition for the boundedness of $A$ that involves the measure $\mu$.
+% Suppose we know that sufficient conditions hold for the existence of some measure $\mu$ with $(m_{n})_{n=1}^{\infty}$ as its sequence of moments, then we can show that for bounded $A$ this measure is unique. For this it will be helpful to have another condition for the boundedness of $A$ that involves the measure $\mu$.
 
 \begin{lem}
     Our linear operator $A: \mathbb{C}[X] \to \mathbb{C}[X]: P \mapsto XP$ is a bounded linear operator if and only if $\mu$ is compactly supported.
@@ -417,61 +442,64 @@ Suppose we know that sufficient conditions hold for the existence of some measur
     First suppose that $\mu$ is compactly supported, and $m_{n}$ is its $n$th moment. Then 
     \begin{align*}
         m_{n+2} &= \int_{\mathbb{R}} x^{n+2} \, d\mu(x) = \int _{\mathbb{R}} x^{2}x^{n} \, d\mu(x) \\
-        &\leq m_{2}|m_{n}| & \text{by Cauchy-Schwarz.}
+        &\leq m_{2}|m_{n}| & \text{by Cauchy-Schwartz.}
     \end{align*}
     Hence $\frac{m_{n+2}}{m_{n}} \leq m_{2}$, and $0 \leq m_{2} \in \mathbb{R}$ since $\mu$ is compactly supported.
 
-    Next, suppose $A$ is a bounded linear operator. Then there is some $C \in \mathbb{R}$ such that $\|A\| \leq C$. For a contradiction, suppose that for all $C > 0$ the measure $\mu$ is supported outside $[-C, C]$, i.e. there exists some subset $E \subseteq \mathbb{R}$ such that $E \cap [-C, C] = \emptyset$ and $\mu(E) > 0$. Therefore $m_{n} \geq \int _{E} x^{n} \, d\mu(x) \geq \int _{E} (C + \varepsilon)^{n} \, d\mu(x) \geq \mu(E)(C + \varepsilon)^{n} > C^{n}$, where the last inequality holds for sufficiently large $n$. If $n$ is even, i.e. $n = 2k$ for some $k \in \mathbb{N}$, this implies $m_2 > C^{2}$ for all $C > 0$, i.e. that $\int_{\mathbb{R}} x^2 \, d\mu(x) = \infty$, which is a contradiction, since , $A$ must be unbounded, which contradicts our assumptions.
+    % Next, suppose $A$ is a bounded linear operator. Then there is some $C \in \mathbb{R}$ such that $\|A\| \leq C$. For a contradiction, suppose that for all $C > 0$ the measure $\mu$ is supported outside $[-C, C]$, i.e. there exists some subset $E \subseteq \mathbb{R}$ such that $E \cap [-C, C] = \emptyset$ and $\mu(E) > 0$. Therefore $m_{n} \geq \int _{E} x^{n} \, d\mu(x) \geq \int _{E} (C + \varepsilon)^{n} \, d\mu(x) \geq \mu(E)(C + \varepsilon)^{n} > C^{n}$, where the last inequality holds for sufficiently large $n$. If $n$ is even, i.e. $n = 2k$ for some $k \in \mathbb{N}$, this implies $m_2 > C^{2}$ for all $C > 0$, i.e. that $\int_{\mathbb{R}} x^2 \, d\mu(x) = \infty$, which is a contradiction, since $\mu$ is a finite measure supported on a compact subset $X$ of $\mathbb{R}$ and $x^2$ is a continuous function so it is bounded on the compact set $X$.
 
     Next, suppose $A$ is a bounded linear operator. Then there is some $C \in \mathbb{R}$ such that $\|A\| \leq C$. For a contradiction, suppose that for all $C > 0$ the measure $\mu$ is supported outside $[-C, C]$, i.e. there exists some subset $E \subseteq \mathbb{R}$ such that $E \cap [-C, C] = \emptyset$ and $\mu(E) > 0$. Therefore $m_{n} \geq \int _{E} x^{n} \, d\mu(x) \geq \int _{E} (C + \varepsilon)^{n} \, d\mu(x) \geq \mu(E)(C + \varepsilon)^{n} > C^{n}$, where the last inequality holds for sufficiently large $n$. Now note that $m_0 = 1$, so $m_{2n} = \prod_{k=1}^{n} \frac{m_{2k}}{m_{2(k-1)}} \leq \sup_{n \in \mathbb{N}} \left| \frac{m_{2(n+1)}}{m_{2n}} \right|^n$. But this means $C \leq \sup_{n \in \mathbb{N}} \left| \frac{m_{2(n+1)}}{m_{2n}} \right|$ for all $C > 0$, therefore by Lemma \ref{A-bound} the operator $A$ must be unbounded, contradicting our assumptions.
 \end{proof}
 
-TODO: define and use $C^{\mathbb{R}}([a,b])$ instead of $C([a,b])$!
- 
-Our main theorem for this section is:
-
-\begin{thm}
-    Whenever the linear operator $A$ that we defined above using the given sequence of moments is bounded, and there exists a measure $\mu$ satisfying the conditions of the Hamburger Moment Problem, then $\mu$ is unique as such.
-\end{thm}
-
-The sketch of the proof goes as follows: We consider two measures $\mu$ and $\nu$ satisfying the conditions of the moment problem. Then we take the spaces $L^{2}([a,b], \mu)$ and $L^{2}([a,b], \nu)$, and extend $A$ to these spaces. Finally we find the constant function $\mathds{1}(x) = 1$ to be cyclic in $A$, yielding TODO find an isomorphism $L^{2}([a,b], \mu) \cong L^2(\sigma(A), \mu_\mathds{1}) \cong L^{2}([a,b], \nu)$, implying $mu = \mu_\mathds{1} = \nu$.
-
 % and use the continuous functional calculus for self-adjoint bounded linear operators to define certain linear functionals which will turn out to be equal as long as $\mu$ and $\nu$ satisfy the conditions of the Hamburger Moment Problem. Note that we consider the $L^{2}$ functions on $[a,b]$ because $\mu,\nu$ are supported only on some compact subset of $\mathbb{R}$ due to the boundedness of $A$, and thus $\exists a,b \in \mathbb{R}$ so that $\supp(\mu) \subseteq [a,b]$ and $\supp(\nu) \subseteq [a,b]$. Finally the aforementioned equality of linear functionals will force the inner products on $L^{2}([a,b],\mu)$ and $L^{2}([a,b], \nu)$ to agree everywhere, leading to the conclusion that $\mu$ and $\nu$ must be equal.
 
-\begin{thm}
-    $C^{\mathbb{R}}([a,b])$ is dense in $L^{p}([a,b], \mu)$ where $1 \leq p <\infty$ and $\mu$ is a measure on $(\mathbb{R},\mathcal{B}(\mathbb{R}))$, and $C^{\mathbb{R}}([a,b])$ is the space of real-valued continuous functions on $[a,b]$.
+\begin{thm}\label{C-dense-in-Lp}
+    $C^{\mathbb{R}}([a,b])$ is dense in $L^{p}([a,b], \mu)$ where $1 \leq p <\infty$ and $\mu$ is a Borel measure on $\mathbb{R}$, and $C^{\mathbb{R}}([a,b])$ is the space of real-valued continuous functions on $[a,b]$.
 \end{thm}
 \begin{proof}
-    All functions in $L^{p}([a,b],\mu)$ arise as limits (under the corresponding $L^{p}$ norm) of simple functions, thus all we need to show is that for any simple function $h(x) = \sum_{i=0}^{N}c_{i}\chi_{[a_{i},b_{i}]}$ with $a_{i} \leq b_{i}$ for $i \in \{ 0,1,\dots,N \}$ on $[a,b]$, and $\epsilon > 0$, there exists some $f \in C^{\mathbb{R}}([a,b])$ such that $\|h - f\|_{L^{p}_{\mu}} = \int _{a}^{b} |h(x) - f(x)|^{p} \, d\mu(x) < \epsilon$. Let $f(x) = c_{0}\chi_{[a_{0},b_{0}]} \sum_{i=1}^{N} \left( (c_{i-1} + \frac{x - a_{i}}{\delta_{i}}(c_{i} - c_{i-1})\chi_{(a_{i},a_{i}+\delta_{i})} + c_{i}\chi_{\left[ a_{i} + \delta_{i}, b_{i} \right]} \right)$, on $[a,b]$, where $\delta_{i} = \min\left( \frac{b_{i} - a_{i}}{2}, \frac{\epsilon}{N} \right)$ for $i \in \{ 1,2,\dots,N \}$. Then $\|h - f\|_{L^{p}_{\mu}} < \epsilon$, and we are done.
+    All functions in $L^{p}([a,b],\mu)$ arise as limits (under the corresponding $L^{p}$ norm) of simple functions, thus all we need to show is that for any simple function $h(x) = \sum_{i=0}^{N}c_{i}\chi_{[a_{i},b_{i}]}$ with $a_{i} \leq b_{i}$ for $i \in \{ 0,1,\dots,N \}$ on $[a,b]$, and $\epsilon > 0$, there exists some $f \in C^{\mathbb{R}}([a,b])$ such that $\|h - f\|_{L^{p}_{\mu}}^p = \int _{a}^{b} |h(x) - f(x)|^{p} \, d\mu(x) < \epsilon$. Let $f(x) = c_{0}\chi_{[a_{0},b_{0}]} \sum_{i=1}^{N} \left( (c_{i-1} + \frac{x - a_{i}}{\delta_{i}}(c_{i} - c_{i-1})\chi_{(a_{i},a_{i}+\delta_{i})} + c_{i}\chi_{\left[ a_{i} + \delta_{i}, b_{i} \right]} \right)$, on $[a,b]$, where $\delta_{i} = \min\left( \frac{b_{i} - a_{i}}{2}, \frac{\epsilon}{N} \right)$ for $i \in \{ 1,2,\dots,N \}$. Then $\|h - f\|_{L^{p}_{\mu}}^p < \epsilon$.
 \end{proof}
 
-Consider the self-adjoint operator $A_{\mu}: C([a,b]) \to L^{2}([a,b],\mu): f \mapsto xf$, which is the same $A$ as we have seen before, except due to the embedding $C([a,b]) \subseteq L^{2}([a,b],\mu)$, we can consider its codomain to be $L^{2}([a,b],\mu)$. Since $A$ is self-adjoint, so is $A_{\mu}$. Additionally, by the previous theorem, there exists a unique extension $\tilde{A_{\mu}}$ of $A_{\mu}$ to $L^{2}([a,b],\mu)$ through the BLT Theorem. By continuity $\tilde{A}_{\mu}$ is also self-adjoint.
+\begin{lem}\label{A-selfadj}
+    The operator $A: \mathbb{C}[X] \to \mathbb{C}[X]$ is self-adjoint.
+\end{lem}
+\begin{proof}
+    Note that $\gamma_{n} \in \mathbb{R}$ for all $n \in \mathbb{N}$. Then
+    $$\langle P, AQ \rangle = \mathcal{H}(P,A(Q)) = \sum_{i=0}^{d} \sum_{j=0}^{d'} \overline{a_{i}}b_{j} \gamma_{i+j+1} = \mathcal{H}(A(P),Q) = \langle AP, Q \rangle.$$
+    Where $P = \sum_{i=0}^{d}a_{i}X^{i}, Q = \sum_{j=0}^{d'}b_{j}X^{j} \in \mathbb{C}[X]$.
+\end{proof}
+
+We extend $A$ uniquely to the space $L^2([a,b],\mu)$ by the BLT Theorem by density. Call this extension $\tilde{A}_\mu$. Since $A$ is self-adjoint, by continuity so is $\tilde{A}_{\mu}$.
 
 \begin{lem}\label{cyclic-A}
     The constant function $\mathds{1}(x) = 1$ is cyclic with regard to $\tilde{A_{\mu}}$.
 \end{lem}
 \begin{proof}
-    Clearly $S := \spanrm\{ \mathds{1}, \tilde{A_{\mu}}\mathds{1} = x, \tilde{A_{\mu}}^{2}\mathds{1} = x^{2}, \dots \} = \mathbb{C}[x]$ for $x \in [a,b]$. Then by the Weierstrass Approximation Theorem $S$ is dense in $C([a,b])$, so by TODO [[MP C ab is dense in L2 ab mu and nu]] $S$ is dense in $L^{2}([a,b],\mu)$.
+    Clearly $S := \spanrm\{ \mathds{1}, \tilde{A_{\mu}}\mathds{1} = x, \tilde{A_{\mu}}^{2}\mathds{1} = x^{2}, \dots \} = \mathbb{C}[x]$ for $x \in [a,b]$. Then by the Weierstrass Approximation Theorem $S$ is dense in $C([a,b])$, so by Theorem \ref{C-dense-in-Lp} $S$ is dense in $L^{2}([a,b],\mu)$.
 \end{proof}
 
-For clarity, in the following argument we will denote variables taking values in $[a,b]$ as $x$, and variables taking values in $\sigma(\tilde{A}_{\mu})$ as $\lambda$.
-Consider a polynomial $P = \sum_{i=0}^{d}a_{i}X^{i} \in \mathbb{C}[X]$, and for such $P$ let $p(\lambda) := P(\lambda) \in L^{2}(\sigma(\tilde{A}_{\mu}), \mu_{\mathds{1}})$ as well as $p_{\mu}(x) = P(x) \in L^{2}([a,b],\mu)$.
-Then let $\phi: C(\sigma(\tilde{A}_\mu)) \to \mathscr{B}(\mathscr{H})$ be the map defining the functional calculus for $\tilde{A}_{\mu}$. Recall $\phi$ is a $*$-homomorphism and $\phi(\lambda) = A$, so
-$$\phi(p)\mathds{1} = P(A)\mathds{1} = p_{\mu}(x) \in L^{2}([a,b], \mu).$$
-By Lemma \ref{cyclic-A}, the cyclic case of the Spectral Theorem, \ref{spectral-mo}, applies to the space $\mathscr{H} := L^{2}([a,b],\mu)$, the self-adjoint operator $\tilde{A}_{\mu}$, and $\psi := \mathds{1}$, yielding a unitary
-$$U: L^{2}([a,b],\mu) \to L^{2}(\sigma(\tilde{A}_{\mu}),\mu_{\mathds{1}}).$$
-Then by definition of $U$ as in the proof of Theorem \ref{spectral-mo}, we have
-$$Up_{\mu} = U\phi(p)\mathds{1} = p.$$
-So $U$ maps any polynomial $P \in \mathbb{C}[x]$ on $[a,b]$ to the same polynomial $P \in \mathbb{C}[\lambda]$ on $\sigma(\tilde{A}_{\mu})$, i.e. we have found the restriction
-$$U_{P} := U \restriction_{\mathbb{C}[x]}: \mathbb{C}[x] \to \mathbb{C}[\lambda]: P(x) \mapsto P(\lambda).$$
-Now consider $f,g \in C([a,b])$, such that $f \restriction_{\sigma(\tilde{A}_\mu)} = g \restriction_{\sigma(\tilde{A}_\mu)}$, but $f \neq g$. By density of the polynomials on $C([a,b])$, there exist sequences $(P_n)_{n=0}^\infty, (Q_n)_{n=0}^\infty$ with $P_n, Q_n \in \mathbb{C}[X]$, such that we have $\sup_{x \in [a,b]}|P_n(x) - f(x)| \to 0$, as well as $\sup_{x \in [a,b]}|Q_n(x) - g(x)| \to 0$, but $\sup_{x \in [a,b]}|Q_n(x) - g(x)| \nrightarrow 0$ as $n \to \infty$. Hence $\sup_{\lambda \in \sigma(\tilde{A}_\mu)}|P_n(\lambda) - Q_n(\lambda)| \to 0$ as $n \to \infty$. By continuity of $U$ we have
-$$Uf = \lim_{n \to \infty} UP_n = f \restriction_{\sigma(\tilde{A}_\mu)} = g \restriction_{\sigma(\tilde{A}_\mu)} = \lim_{n \to \infty} UQ_n = Ug.$$
-So $0 = \|Uf - Ug\|^2 = \|U(f-g)\|^2 = \int_{\sigma(\tilde{A}_\mu)} |f - g|^2 \, d\mu_\mathds{1}$.
-But $U$ is unitary, therefore $0 = \|f-g\|^2 = \int_a^b |f - g|^2 \, d\mu$.
-This immediately implies $\supp(\mu) = \sigma(\tilde{A}_\mu)$.
-Hence $f = f \restriction_{\sigma(\tilde{A}_{\mu})}$ a.e. with regard to $\mu$ for any $f \in C([a,b])$.
+We are now ready to prove Theorem \ref{uniqueness}.
 
-Then $\langle \mathds{1}, \phi(f)\mathds{1} \rangle = \int _{a}^{b} f \, d\mu = \int _{\sigma(\tilde{A}_{\mu})} f \, d\mu$ for all $f \in C([a,b])$, but we recall that $\langle \mathds{1}, \phi(f)\mathds{1} \rangle = \int _{\sigma(\tilde{A}_{\mu})} f \, d\mu_{\mathds{1}}$ by definition of $\mu_{\mathds{1}}$ and by the Riesz-Markov-Kakutani Representation Theorem $\mu_{\mathds{1}}$ is the unique Borel measure on $\sigma(\tilde{A}_{\mu})$ with this property. Therefore $\mu = \mu_\mathds{1}$. By an identical argument $\nu = \mu_\mathds{1}$, and then $\mu = \nu$, so the solution of the Hamburger Moment Problem is unique in the case that the corresponding operator $A$ is bounded.
+\begin{proof}[Proof of Theorem \ref{uniqueness}]
+    For clarity, in the following argument we will denote variables taking values in $[a,b]$ as $x$, and variables taking values in $\sigma(\tilde{A}_{\mu})$ as $\lambda$.
+    Consider a polynomial $P = \sum_{i=0}^{d}a_{i}X^{i} \in \mathbb{C}[X]$, and for such $P$ let $p(\lambda) := P(\lambda) \in L^{2}(\sigma(\tilde{A}_{\mu}), \mu_{\mathds{1}})$ as well as $p_{\mu}(x) = P(x) \in L^{2}([a,b],\mu)$.
+    Then let $\phi: C(\sigma(\tilde{A}_\mu)) \to \mathscr{B}(\mathscr{H})$ be the map defining the functional calculus for $\tilde{A}_{\mu}$. Recall $\phi$ is a $*$-homomorphism and $\phi(\lambda) = A$, so
+    $$\phi(p)\mathds{1} = P(A)\mathds{1} = p_{\mu}(x) \in L^{2}([a,b], \mu).$$
+    By Lemma \ref{cyclic-A}, the cyclic case of the Spectral Theorem, \ref{spectral-mo}, applies to the space $\mathscr{H} := L^{2}([a,b],\mu)$, the self-adjoint operator $\tilde{A}_{\mu}$, and $\psi := \mathds{1}$, yielding a unitary
+    $$U: L^{2}([a,b],\mu) \to L^{2}(\sigma(\tilde{A}_{\mu}),\mu_{\mathds{1}}).$$
+    Then by definition of $U$ as in the proof of Theorem \ref{spectral-mo}, we have
+    $$Up_{\mu} = U\phi(p)\mathds{1} = p.$$
+    So $U$ maps any polynomial $P \in \mathbb{C}[x]$ on $[a,b]$ to the same polynomial $P \in \mathbb{C}[\lambda]$ on $\sigma(\tilde{A}_{\mu})$, i.e. we have found the restriction
+    $$U_{P} := U \restriction_{\mathbb{C}[x]}: \mathbb{C}[x] \to \mathbb{C}[\lambda]: P(x) \mapsto P(\lambda).$$
+    Now consider $f,g \in C([a,b])$, such that $f \restriction_{\sigma(\tilde{A}_\mu)} = g \restriction_{\sigma(\tilde{A}_\mu)}$, but $f \neq g$. By density of the polynomials on $C([a,b])$, there exist sequences $(P_n)_{n=0}^\infty, (Q_n)_{n=0}^\infty$ with $P_n, Q_n \in \mathbb{C}[X]$, such that we have $\sup_{x \in [a,b]}|P_n(x) - f(x)| \to 0$, as well as $\sup_{x \in [a,b]}|Q_n(x) - g(x)| \to 0$, but $\sup_{x \in [a,b]}|P_n(x) - Q_n(x)| \nrightarrow 0$ as $n \to \infty$. However, $f \restriction_{\sigma(\tilde{A}_\mu)} = g \restriction_{\sigma(\tilde{A}_\mu)}$ so $\sup_{\lambda \in \sigma(\tilde{A}_\mu)}|P_n(\lambda) - Q_n(\lambda)| \to 0$ as $n \to \infty$. By continuity of $U$ we have
+    $$Uf = \lim_{n \to \infty} UP_n = f \restriction_{\sigma(\tilde{A}_\mu)} = g \restriction_{\sigma(\tilde{A}_\mu)} = \lim_{n \to \infty} UQ_n = Ug.$$
+    So $0 = \|Uf - Ug\|_{L^{2}(\sigma(\tilde{A}_{\mu}),\mu_{\mathds{1}})}^2 = \|U(f-g)\|_{L^{2}(\sigma(\tilde{A}_{\mu}),\mu_{\mathds{1}})}^2 = \int_{\sigma(\tilde{A}_\mu)} |f - g|^2 \, d\mu_\mathds{1}$.
+    But $U$ is unitary, therefore $0 = \|f-g\|_{L^{2}([a,b],\mu)}^2 = \int_a^b |f - g|^2 \, d\mu$.
+    This immediately implies $\supp(\mu) = \sigma(\tilde{A}_\mu)$.
+    Hence $f = f \restriction_{\sigma(\tilde{A}_{\mu})}$ a.e. with regard to $\mu$ for any $f \in C([a,b])$.
+
+    Then $\langle \phi(f)\mathds{1}, \mathds{1} \rangle = \int _{a}^{b} f \, d\mu = \int _{\sigma(\tilde{A}_{\mu})} f \, d\mu$ for all $f \in C([a,b])$, but we recall that $\langle \phi(f)\mathds{1}, \mathds{1} \rangle = \int _{\sigma(\tilde{A}_{\mu})} f \, d\mu_{\mathds{1}}$ by definition of $\mu_{\mathds{1}}$ and by the Riesz-Markov-Kakutani Representation Theorem $\mu_{\mathds{1}}$ is the unique Borel measure on $\sigma(\tilde{A}_{\mu})$ with this property. Therefore $\mu = \mu_\mathds{1}$. By an identical argument $\nu = \mu_\mathds{1}$, and then $\mu = \nu$, so the solution of the Hamburger Moment Problem is unique in the case that the corresponding operator $A$ is bounded.
+\end{proof}
 
 
 % We define
@@ -501,43 +529,36 @@ Then $\langle \mathds{1}, \phi(f)\mathds{1} \rangle = \int _{a}^{b} f \, d\mu = 
     An operator $T$ is closable if it has a closed extension. The smallest closed extension of $T$ is called its closure, denoted $\overline{T}$, i.e. for any closed extension $T'$ of $T$, $\Gamma(\overline{T}) \subseteq \Gamma(T')$.
 \end{defn}
 
-An operator $T$ may not be closable if $\overline{\Gamma(T)}$ is not the graph of an operator. TODO rewrite?
-
-Example: TODO 
+\begin{rem}
+    The case where an operator $T$ may not be closable arises when $\overline{\Gamma(T)}$ is not the graph of an operator.
+\end{rem}
 
 \begin{lem}
     If $T$ is closable, then $\Gamma(\overline{T}) = \overline{\Gamma(T)}$.
 \end{lem}
 \begin{proof}
-    Let $T'$ be a closed extension of $T$. Then $\overline{\Gamma(T)} \subseteq \Gamma(T')$, since $\Gamma(T')$ is closed. Note that for any $x \in \mathscr{H}$, there is at most one element in $\Gamma(T')$ of the form $(x, y)$ where $x$ is the first element of a pair in $\Gamma(T')$. So consider an operator $R$ defined on $D(R) = \{ x \, | \, (x,y) \in \overline{\Gamma(T)} \}$ with values $Rx = y$ where $y$ is the unique vector such that $(x,y) \in \overline{\Gamma(T)}$. Since $T'$ is closed, $Rx = T'x$ for all $x \in D(R)$. Finally, $D(T)$ is a linear subspace of $\mathscr{H}$ and $\overline{D(T)} = D(R)$ TODO: **<-- show this**. And the closure of a linear subspace must be a linear subspace, hence $R$ is an operator. TODO: show: in particular, $\Gamma(R) = \overline{\Gamma(T)}$.
+    Let $T'$ be a closed extension of $T$. Then $\overline{\Gamma(T)} \subseteq \Gamma(T')$, since $\Gamma(T')$ is closed. Note that for any $x \in \mathscr{H}$, there is at most one element in $\Gamma(T')$ of the form $(x, y)$ where $x$ is the first element of a pair in $\Gamma(T')$. So consider an operator $R$ defined on $D(R) = \{ x \, | \, (x,y) \in \overline{\Gamma(T)} \}$ with values $Rx = y$ where $y$ is the unique vector such that $(x,y) \in \overline{\Gamma(T)}$. Since $T'$ is closed, $Rx = T'x$ for all $x \in D(R)$. Finally, $D(T)$ is a linear subspace of $\mathscr{H}$ and $\overline{D(T)} = D(R)$. And the closure of a linear subspace must be a linear subspace, hence $R$ is an operator.
 \end{proof}
 
-TODO: exposition for the definition of the adjoint
+% TODO: exposition for the definition of the adjoint
 
 \begin{defn}
-    Let $T$ be a densely defined linear operator on a Hilbert space $\mathscr{H}$, i.e. $D(T)$ is dense in $\mathscr{H}$. Define $D(T^{*}) := \{ y \in \mathscr{H} \, | \, \exists z \in \mathscr{H}: \forall x \in D(T): \langle Tx,y \rangle = \langle x, z \rangle \}$. Then we define $T^{*}y = z$ for all $y \in D(T^{*})$. We call $T^{*}$ the adjoint of $T$. TODO: by the Riesz lemma... Note that if $S \subseteq T$ then $T^{*} \subseteq S^{*}$ due to the $\forall x \in D(T)$ requirement in the definition of $T^{*}$.
+    Let $T$ be a densely defined linear operator on a Hilbert space $\mathscr{H}$, i.e. $D(T)$ is dense in $\mathscr{H}$. Define $D(T^{*}) := \{ y \in \mathscr{H} \, | \, \exists z \in \mathscr{H}: \forall x \in D(T): \langle Tx,y \rangle = \langle x, z \rangle \}$. Then by the Riesz Representation Theorem we define $T^{*}y = z$ for all $y \in D(T^{*})$. We call $T^{*}$ the adjoint of $T$. Note that if $S \subseteq T$ then $T^{*} \subseteq S^{*}$ due to the $\forall x \in D(T)$ requirement in the definition of $T^{*}$.
 \end{defn}
 
-TODO: from the remark before Example 4 in the book
+% TODO: from the remark before Example 4 in the book
 
 \begin{thm}
-    For a densely defined operator $T$ on a Hilbert space $\mathscr{H}$ the following statements hold. 
-    \begin{itemize}
-        \item $T^{*}$ is closed.
-        \item $T$ is closable if and only if $D(T^{*})$ is dense in which case $\overline{T} = T^{**}$.
-        \item If $T$ is closable, then $(\overline{T})^{*} = T^{*}$.
-    \end{itemize}
+    For a densely defined operator $T$ on a Hilbert space $\mathscr{H}$ the following statements hold. $T^{*}$ is closed, $T$ is closable if and only if $D(T^{*})$ is dense in which case $\overline{T} = T^{**}$, and if $T$ is closable, then $(\overline{T})^{*} = T^{*}$.
 \end{thm}
 \begin{proof}
-    TODO: cite R-S; largely copied Consider the unitary operator $$V: \mathscr{H} \times \mathscr{H} \to \mathscr{H} \times \mathscr{H}: (\phi,\psi) \mapsto (\psi,\phi).$$Because $V$ is unitary, $V(E^{\perp}) = (V(E))^{\perp}$ for any subspace $E \subseteq \mathscr{H}$. Let $T$ be a linear operator on $\mathscr{H}$ and $(\phi, \eta) \in \mathscr{H} \times \mathscr{H}$. Then $(\phi, \eta) \in V(\Gamma(T))^{\perp}$ if and only if $\langle (\phi,\eta), (-T\psi,\psi) \rangle = 0$ for all $\psi \in D(T)$, i.e. if and only if $(\phi, \eta) \in \Gamma(T^{*})$. Therefore $\Gamma(T^{*}) = V(\Gamma(T))^{\perp}$, which is an orthogonal complement, and thus closed.
+    TODO: check, and cite R-S; largely copied Consider the unitary operator $$V: \mathscr{H} \times \mathscr{H} \to \mathscr{H} \times \mathscr{H}: (\phi,\psi) \mapsto (-\psi,\phi).$$Because $V$ is unitary, $V(E^{\perp}) = (V(E))^{\perp}$ for any subspace $E \subseteq \mathscr{H}$. Let $T$ be a linear operator on $\mathscr{H}$ and $(\phi, \eta) \in \mathscr{H} \times \mathscr{H}$. Then $(\phi, \eta) \in V(\Gamma(T))^{\perp}$ if and only if $\langle (\phi,\eta), (-T\psi,\psi) \rangle = 0$ for all $\psi \in D(T)$, i.e. if and only if $(\phi, \eta) \in \Gamma(T^{*})$. Therefore $\Gamma(T^{*}) = V(\Gamma(T))^{\perp}$, which is an orthogonal complement, and thus closed.
 
     To show the second statement, note that $\Gamma(T) \subseteq \mathscr{H} \times \mathscr{H}$ is a linear subset, so
-    \begin{align}
-        \overline{\Gamma(T)} &= (\Gamma(T)^{\perp})^{\perp} \\
-        &= (V^{2}\Gamma(T)^{\perp})^{\perp} \\
-        &= (V(V\Gamma(T))^{\perp})^{\perp} \\
-        &= (V\Gamma(T^{*}))^{\perp}.
-    \end{align}
+    \begin{align*}
+        \overline{\Gamma(T)} &= (\Gamma(T)^{\perp})^{\perp} = (V^{2}\Gamma(T)^{\perp})^{\perp} \\
+        &= (V(V\Gamma(T))^{\perp})^{\perp} = (V\Gamma(T^{*}))^{\perp}.
+    \end{align*}
     So by our previous arguments, if $T^{*}$ is densely defined, $\overline{\Gamma(T)}$ is the graph of $T^{**}$.
 
     Conversely, suppose $D(T^{*})$ is not dense and let $\psi \in D(T^{*})^{\perp}$. 
@@ -551,7 +572,7 @@ TODO: from the remark before Example 4 in the book
     The resolvent set $\rho(T)$ of a closed operator $T$ on a Hilbert space $\mathscr{H}$ is defined as the set of complex numbers $\lambda \in \mathbb{C}$ such that $T - \lambda I$ is a bijection of $D(T)$ onto $\mathscr{H}$. For $\lambda \in \rho(T)$, we call $R_\lambda (T) := (T - \lambda I)^{-1}$ the resolvent of $T$ at $\lambda$. The spectrum, point spectrum, and residual spectrum of an unbounded operator $T$ are defined in the same way as they are for bounded operators.
 \end{defn}
 
-\begin{rem}
+\begin{rem}\label{first-resolvent-remark-unbdd}
     The statements of Theorem \ref{resolvent-analytic} and Corollary \ref{first-resolvent-formula} hold for unbounded operators as well, with identical proofs to the bounded case.
 \end{rem}
 
@@ -560,7 +581,7 @@ TODO: from the remark before Example 4 in the book
 \end{defn}
 
 \begin{lem}
-    If an operator $A$ is symmetric, then $A^{*}$ is symmetric if and only if $A$ is self-adjoint.
+    If an operator $A$ is symmetric, then its adjoint $A^{*}$ is symmetric if and only if $A$ is self-adjoint.
 \end{lem}
 \begin{proof}
     Clearly $A$ is symmetric if it is self-adjoint, and if $A^{*}$ is symmetric then $A^{*} \subset A$, so $A^{*} = A$.
@@ -572,7 +593,7 @@ TODO: exposition
     For a symmetric operator $A$ the deficiency subspaces of $A$ are defined as $\mathscr{K}_{\pm} = \ker(A^{*}\mp i)$, i.e. $\mathscr{K}_{+} = \{ \phi \in \mathscr{H} \, | \, A^{*}\phi = i \phi \}$. The quantities $d_{\pm} = \dim(\mathscr{K}_{\pm})$ are called the deficiency indices of $A$.
 \end{defn}
 
-\begin{lem}
+\begin{lem}\label{RanAplusi-closed}
     If $A$ is a closed symmetric operator, then $\Ran(A\pm i)$ are closed, and $\mathscr{K}_{\pm}^{\perp} = \Ran(A\pm i)$.
 \end{lem}
 \begin{proof}
@@ -608,7 +629,7 @@ TODO: exposition
     Clearly $B$ is a closed symmetric extension of $A$ if and only if $A \subseteq B \subseteq B^{*} \subseteq A^{*}$. Thus every symmetric extension of $A$ is contained in $A^{*}$. Additionally an extension $B$ of $A$ is closed if and only if $D(B)$ is $A$-closed, and symmetric if and only if $D(B)$ is $A$-symmetric.
 \end{proof}
 
-\begin{cor}
+\begin{cor}\label{Aclosed-Asymm}
     If $A$ is a closed symmetric operator then the closed symmetric extensions $B$ of $A$ correspond one-to-one to the $A$-closed, $A$-symmetric subspaces $S$ of $\mathscr{K}_{+} \oplus \mathscr{K}_{-}$, and this correspondence is given by $D(B) = D(A) \oplus S$.
 \end{cor}
 \begin{proof}
@@ -625,18 +646,18 @@ TODO: exposition
 \begin{proof}
     Let $A_{1}$ be a closed symmetric extension of $A$. Now by the previous lemma we have $D(A_{1}) = D(A) \oplus S_{1}$ for some $A$-closed, $A$-symmetric subspace of $\mathscr{K}_{+} \oplus \mathscr{K}_{-}$. Suppose $\phi \in S_{1}$, so we can write $\phi = \phi_{+} + \phi_{-}$ uniquely with $\phi_{+} \in \mathscr{K}_{+}, \phi_{-} \in \mathscr{K}_{-}$. Additionally, we have $\|\phi_{+}\|^{2} = \|\phi_{-}\|^{2}$ since $$2i\langle\phi_{-},\phi_{-}\rangle - 2i\langle\phi_{+},\phi_{+}\rangle = \langle A^{*}\phi,\phi \rangle - \langle\phi,A^{*}\phi \rangle = 0,$$ where the last equality is due to $S_{1}$ being $A$-symmetric.
 
-    Now $\|\phi_{+}\|^{2} = \|\phi_{-}\|^{2}$ implies that the map $U: \phi_{+} \mapsto \phi_{-}$ is a well-defined isometry from some subspace of $\mathscr{K}_{+}$ into $\mathscr{K}_{-}$, i.e. $U: \mathscr{K}_{+} \to \mathscr{K}_{-}$ is a partial isometry, since if we had $(\phi_{+},\phi_{-}), (\phi_{+},\phi_{-}') \in S_{1} \subseteq \mathscr{K}_{+} \oplus \mathscr{K}_{-}$, then we would have $(\phi_{+},\phi_{-}) - (\phi_{+}, \phi_{-}') = (0, \phi_{-} - \phi_{-}') \in S_{1}$ since $S_{1}$ is a subspace, but $<_{U}$ defined by $\phi_{+} <_{U} \phi_{-}$ whenever $\exists \phi = (\phi_{+},\phi_{-}) \in S_{1}$ is a relation that respects addition and scalar multiplication, thus $0 <_{U} \phi_{-} - \phi_{-}'$, which implies that $0 = \|0\|^{2} = \|\phi_{-}-\phi_{-}'\|^{2}$, i.e. $\phi_{i} = \phi_{-}'$. Thus $$D(A_{1}) = D(A) \oplus S_{1} = \{ \phi + \phi_{+} + U\phi_{+} \, | \, \phi \in D(A), \phi_{+} \in I(U) \}.$$ Additionally we can calculate $$A_{1}(\phi+\phi_{+}+U\phi_{+}) = A^{*}(\phi+\phi_{+}+U\phi_{+}) = A\phi + i\phi_{+} - iU\phi_{+}.$$
-    Conversely, suppose $U$ is an isometry from a subspace of $\mathscr{K}_{+}$ into $\mathscr{K}_{-}$ and let $D(A_{1})$ and $A_{1}$ as above. This gives that $D(A_{1})$ is an $A$-closed, $A$-symmetric subspace of $D(A^{*})$, so by the lemma above $A_{1}$ is a closed symmetric extension of $A$.
+    Now $\|\phi_{+}\|^{2} = \|\phi_{-}\|^{2}$, and the following argument shows that $U: \phi_{+} \mapsto \phi_{-}$ is a well-defined isometry from some subspace of $\mathscr{K}_{+}$ into $\mathscr{K}_{-}$, i.e. $U: \mathscr{K}_{+} \to \mathscr{K}_{-}$ is a partial isometry. Suppose we have $(\phi_{+},\phi_{-}), (\phi_{+},\phi_{-}') \in S_{1} \subseteq \mathscr{K}_{+} \oplus \mathscr{K}_{-}$, then we would have $(\phi_{+},\phi_{-}) - (\phi_{+}, \phi_{-}') = (0, \phi_{-} - \phi_{-}') \in S_{1}$ since $S_{1}$ is a subspace. Consider the relation $<_{U}$ defined by $\phi_{+} <_{U} \phi_{-}$ whenever $\exists \phi = (\phi_{+},\phi_{-}) \in S_{1}$, clearly $<_{U}$ respects addition and scalar multiplication. Thus $0 <_{U} \phi_{-} - \phi_{-}'$, which implies that $0 = \|0\|^{2} = \|\phi_{-}-\phi_{-}'\|^{2}$, i.e. $\phi_{i} = \phi_{-}'$. Thus $$D(A_{1}) = D(A) \oplus S_{1} = \{ \phi + \phi_{+} + U\phi_{+} \, | \, \phi \in D(A), \phi_{+} \in I(U) \}.$$ Additionally we can calculate $$A_{1}(\phi+\phi_{+}+U\phi_{+}) = A^{*}(\phi+\phi_{+}+U\phi_{+}) = A\phi + i\phi_{+} - iU\phi_{+}.$$
+    Conversely, suppose $U$ is an isometry from a subspace of $\mathscr{K}_{+}$ into $\mathscr{K}_{-}$ and let $D(A_{1})$ and $A_{1}$ as above. This gives that $D(A_{1})$ is an $A$-closed, $A$-symmetric subspace of $D(A^{*})$, so by Corollary \ref{Aclosed-Asymm} $A_{1}$ is a closed symmetric extension of $A$.
 
     Now we calculate: \begin{align*}
-        \mathscr{K}_{+}(A_{1}) &= \ker(A_{1}^{*} - i)  \\
-        &= \Ran(A_{1} + i)^{\perp}  \\
+        \mathscr{K}_{+}(A_{1}) &= \ker(A_{1}^{*} - i)  = \Ran(A_{1} + i)^{\perp}  \\
         &= \{ A\phi + i\phi_{+} - iU\phi_{+} + i(\phi + \phi_{+} + U\phi_{+}) \, | \, \phi \in D(A), \phi_{+} \in I(U) \}^{\perp}  \\
-        &= \{ (A + i)\phi + (i - iU + (i + iU))\phi_{+} \, | \, \phi \in D(A), \phi_{+} \in I(U) \}^{\perp} \\
+        % &= \{ (A + i)\phi + (i - iU + (i + iU))\phi_{+} \, | \, \phi \in D(A), \phi_{+} \in I(U) \}^{\perp} \\
         &= \{ (A + i)\phi + 2i\phi_{+} \, | \, \phi \in D(A), \phi_{+} \in I(U) \}^{\perp} \\
-        &= (\Ran(A+i) + 2iI(U))^{\perp}.
+        &= (\Ran(A+i) + 2iI(U))^{\perp}, \text{ and similarly}
     \end{align*}
-Similarly: $$\mathscr{K}_{-}(A_{1}) = \{ (A - i)\phi - 2iU\phi_{+} \, | \, \phi \in D(A), \phi_{+} \in I(U) \}^{\perp} = (\Ran(A - i) - 2iUI(U)).$$ And $I(U) \subseteq \mathscr{K}_{+}(A) \perp \Ran(A+i), UI(U) \subseteq \mathscr{K}_{-}(A) \perp \Ran(A - i)$, thus $$d_{\pm}(A_{1}) = \dim(\mathscr{K}_{\pm}(A_{1})) = \dim(\mathscr{K}_{\pm}(A)) - \dim(I(U)).$$
+    $$\mathscr{K}_{-}(A_{1}) = \{ (A - i)\phi - 2iU\phi_{+} \, | \, \phi \in D(A), \phi_{+} \in I(U) \}^{\perp} = (\Ran(A - i) - 2iUI(U))^\perp.$$
+    Finally $I(U) \subseteq \mathscr{K}_{+}(A) \perp \Ran(A+i)$, and $UI(U) \subseteq \mathscr{K}_{-}(A) \perp \Ran(A - i)$, thus $d_{\pm}(A_{1}) = \dim(\mathscr{K}_{\pm}(A_{1})) = \dim(\mathscr{K}_{\pm}(A)) - \dim(I(U))$.
 \end{proof}
 
 \begin{lem}
@@ -650,11 +671,11 @@ Similarly: $$\mathscr{K}_{-}(A_{1}) = \{ (A - i)\phi - 2iU\phi_{+} \, | \, \phi 
     A norm-preserving antilinear map $C: \mathscr{H} \to \mathscr{H}$ (so $C(\alpha \phi + \beta \psi) = \overline{\alpha}C\phi + \overline{\beta}C\psi$) is called a conjugation if $C^{2} = I$.
 \end{defn}
 
-\begin{thm}
+\begin{thm}\label{vonNeumann}
     If $A: D(A) \to \mathscr{H}$ is a symmetric operator and there exists a conjugation $C: \mathscr{H} \to \mathscr{H}$ such that $C(D(A)) \subseteq D(A)$, and $CA = AC$, then the deficiency indices of $A$ are equal, and hence $A$ has self-adjoint extensions.
 \end{thm}
 \begin{proof}
-     We have that $C^{2} = I$ and $CD(A) \subseteq D(A)$, so $CD(A) = D(A)$. Now let $\phi_{+} \in \mathscr{K}_{+}$, and $\psi \in D(A)$. This implies $$0 = \overline{\langle \phi_{+}, (A + i) \psi \rangle} = \langle C\phi_{+}, C(A+i)\psi \rangle = \langle C\phi_{+}, (A-i)C\psi \rangle,$$ where the second equality is due to the anti-linearity of $C$ combined with $C^{2} = I$. Now note that $C$ maps $D(A)$ onto $D(A)$, and $C\phi_{+} \in \mathscr{K}_{-}$ since $C$ commutes with $A$, and thus $C$ maps $\mathscr{K}_{+}$ to $\mathscr{K}_{-}$. By a similar argument $C$ maps $\mathscr{K}_{-}$ to $\mathscr{K}_{+}$. Note that $C$ is norm-preserving and is its own inverse, i.e. $C$ induces an isometry between $\mathscr{K}_{+}$ and $\mathscr{K}_{-}$, so $\dim(\mathscr{K}_{+}) = \dim(\mathscr{K}_{-})$ and we are done.
+     We have that $C^{2} = I$ and $CD(A) \subseteq D(A)$, so $CD(A) = D(A)$. Now let $\phi_{+} \in \mathscr{K}_{+}$, and $\psi \in D(A)$. This implies $0 = \overline{\langle \phi_{+}, (A + i) \psi \rangle} = \langle C\phi_{+}, C(A+i)\psi \rangle = \langle C\phi_{+}, (A-i)C\psi \rangle$, where the second equality is due to the anti-linearity of $C$ combined with $C^{2} = I$. Now note that $C$ maps $D(A)$ onto $D(A)$, and $C\phi_{+} \in \mathscr{K}_{-}$ since $C$ commutes with $A$, and thus $C$ maps $\mathscr{K}_{+}$ to $\mathscr{K}_{-}$. By a similar argument $C$ maps $\mathscr{K}_{-}$ to $\mathscr{K}_{+}$. Note that $C$ is norm-preserving and is its own inverse, in other words $C$ induces an isometry between $\mathscr{K}_{+}$ and $\mathscr{K}_{-}$, so $\dim(\mathscr{K}_{+}) = \dim(\mathscr{K}_{-})$.
 \end{proof}
 
 \chapter{More on functional calculi}
@@ -666,7 +687,7 @@ Our goal in this chapter is to eventually construct a functional calculus for bo
 \end{defn}
 
 \begin{thm}
-    For $A,B$ commuting self-adjoint operators on a Hilbert space $\mathscr{H}$ there is a unique map $\tilde{\phi}: C(\sigma(A,B)) \to \mathscr{L}(\mathscr{H})$ such that:
+    For $A,B$ commuting self-adjoint operators on a Hilbert space $\mathscr{H}$ there is a unique map $\tilde{\phi}: C(\sigma(A,B)) \to \mathscr{B}(\mathscr{H})$ such that:
     \begin{itemize}
         \item $\tilde{\phi}$ is a $*$-homomorphism:
         \begin{itemize}
@@ -683,11 +704,11 @@ Our goal in this chapter is to eventually construct a functional calculus for bo
     \end{itemize}
 \end{thm}
 
-We proceed similarly as in the case of the functional calculus for a single self-adjoint operator, with the notable difference that at first we define our functional calculus on $C(\sigma(A) \times \sigma(B))$ and show that the corresponding mapping $\phi$ is a bounded linear operator. Once we have defined our spectral measures through this functional calculus we will a posteriori show that the spectral measures are supported only on $\sigma(A,B)$, and hence we will see that $\tilde{\phi} := \phi \restriction_{\sigma(A,B)}$ is an isometry.
+We proceed similarly as in the case of the functional calculus for a single self-adjoint operator, with the notable difference that at first we define our functional calculus on $C(\sigma(A) \times \sigma(B))$ and show that the corresponding mapping $\phi$ is a bounded linear operator. Once we have defined our spectral measures through this functional calculus we will a posteriori show that the spectral measures are supported only on $\sigma(A,B)$, and hence we will see that $\tilde{\phi}$ is an isometry.
 
 Similar to the case for a single operator, we first define a $*$-homomorphism $\phi'_{A,B}: \mathbb{C}[X,Y] \to \mathscr{B}(\mathscr{H}): \sum_{i=0}^{d} \sum_{j=0}^{i} a_{i,j} X^{i - j}Y^{j} \mapsto \sum_{i=0}^{d} \sum_{j=0}^{i} a_{i,j} A^{i - j}B^{j}$. We will use the notation $P(A,B) := \phi'_{A,B}(P)$.
 
-To begin with, a weaker version of the Spectral Mapping Theorem will be enough to show that $\phi'_{A,B}$ is bounded, allowing us to then extend it to the continuous functions.
+To begin with, a weaker version of the Spectral Mapping Theorem will be enough to show that $\phi'_{A,B}$ is bounded, allowing us to extend it to $C(\sigma(A) \times \sigma(B))$.
 
 \begin{lem}\label{psigma-sigmap}
     For $A,B$ as before, we have $P(\sigma(A,B)) \subseteq \sigma(P(A,B))$.
@@ -700,7 +721,7 @@ To begin with, a weaker version of the Spectral Mapping Theorem will be enough t
     For commuting self-adjoint operators $A,B$ on a Hilbert space $\mathscr{H}$ we have the inclusion $\sigma(P(A,B)) \subseteq P(\sigma(A) \times \sigma(B))$.
 \end{lem}
 \begin{proof}
-    Let $\rho \in \sigma(P(A,B))$. To show $\rho \in P(\sigma(A,B))$ all we have to do is find one pair $(\lambda,\mu) \in \sigma(A,B)$ such that $P(\lambda,\mu) - \rho = 0$. Fix $\lambda \in \sigma(A)$ and consider $P(\lambda,y) - \rho = 0$. Now by the polynomial Spectral Mapping Theorem for a single bounded self-adjoint operator there is some $\mu \in \sigma(B)$ such that $y = \mu$ is a root of $P(\lambda,y) - \rho = 0$ and we are done.
+    Let $\rho \in \sigma(P(A,B))$. To show $\rho \in P(\sigma(A,B))$ all we have to do is find one pair $(\lambda,\mu) \in \sigma(A,B)$ such that $P(\lambda,\mu) - \rho = 0$. Fix $\lambda \in \sigma(A)$ and consider $P(\lambda,y) - \rho = 0$. Now by the polynomial Spectral Mapping Theorem for a single bounded self-adjoint operator there is some $\mu \in \sigma(B)$ such that $y = \mu$ is a root of $P(\lambda,y) - \rho = 0$.
 \end{proof}
 
 \begin{lem}\label{spectral-ub}
@@ -715,14 +736,14 @@ To begin with, a weaker version of the Spectral Mapping Theorem will be enough t
     \end{align*}
     But $\sup_{\lambda' \in \sigma(\overline{P}P(A,B))} |\lambda'| = \|\overline{P}P(A,B)\| = \|P(A,B)^{*}P(A,B)\| = \|P(A,B)\|^{2}$ where the first equality is by Theorem \ref{spectral-radius}, since Theorem \ref{pos-selfadj} implies that $P(A,B)^{*}P(A,B) \geq 0$ and thus $\overline{P}P(A,B) = P(A,B)^{*}P(A,B)$ is self-adjoint. The second equality is due to $\phi'_{A} : P(\lambda,\mu) \mapsto P(A,B)$ being a $*$-homomorphism.
 
-    Then by the definition of the joint spectrum $(P(A,B) - P(\lambda,\mu))v_{n} \to 0$ as $n \to \infty$. TODO: finish
+    % Then by the definition of the joint spectrum $(P(A,B) - P(\lambda,\mu))v_{n} \to 0$ as $n \to \infty$. TODO: finish
 \end{proof}
 
 \begin{lem}
     The polynomials $\mathbb{C}[X,Y]$ on $\sigma(A) \times \sigma (B)$ are dense in $C(\sigma(A) \times \sigma(B))$.
 \end{lem}
 \begin{proof}
-    Holds by a very similar argument as in the univariate case. Full proof omitted. TODO -> just cite full Stone-Weierstrass
+    Omitted. This lemma is a consequence of the Stone-Weierstrass Theorem.
 \end{proof}
 
 \begin{lem}
@@ -733,31 +754,31 @@ To begin with, a weaker version of the Spectral Mapping Theorem will be enough t
     \end{itemize}
 \end{lem}
 \begin{proof}
-    The upper bound from Lemma \ref{spectral-ub} on $\|\phi'_{A,B}\|$ implies that $\phi'_{A,B}$ is bounded. Then the BLT Theorem TODO: **check that we state the BLT Thm. between 2 different Hilbert spaces** implies that $\phi'_{A,B}$ has a unique extension $\phi: C(\sigma(A) \times \sigma(B)) \to \mathscr{L}(\mathscr{H})$ and that $\phi$ is also bounded (i.e. continuous). By continuity, $\phi$ is a $*$-homomorphism.
+    The upper bound from Lemma \ref{spectral-ub} on $\|\phi'_{A,B}\|$ implies that $\phi'_{A,B}$ is bounded. Then the BLT Theorem implies that $\phi'_{A,B}$ has a unique extension $\phi: C(\sigma(A) \times \sigma(B)) \to \mathscr{B}(\mathscr{H})$ and that $\phi$ is also bounded (i.e. continuous). By continuity, $\phi$ is a $*$-homomorphism.
 
     Since $\phi(P)\psi = P(\lambda,\mu)\psi$, we can again apply continuity to see that if $A\psi = \lambda \psi$ and $B\psi = \mu \psi$ then $\phi(f)\psi = f(\lambda,\mu)\psi$ for $\lambda \in \sigma(A), \mu \in \sigma(B)$, $\psi \in \mathscr{H}$.
 
     That $\phi$, when restricted to real-valued functions, is a positive operator follows by an argument largely identical to the one we used in the case of the functional calculus for a single bounded self-adjoint operator.
 \end{proof}
 
-Now we can define the (complex) spectral measures of a pair of commuting bounded self-adjoint operators $A,B$ by fixing $\psi \in \mathscr{H}$. The map $f \mapsto \langle \psi, f(A,B) \psi \rangle$ is a bounded linear functional. Then, since $\sigma(A) \times \sigma(B)$ is a product of two compact sets, and hence is itself compact under the product topology on $\mathbb{R}^{2}$, the Riesz-Markov-Kakutani Theorem TODO: **Rudin** tells us that there exists a unique regular complex measure $\mu_{\psi}$ on $\sigma(A) \times \sigma(B)$ such that $\langle \psi, f(A,B) \psi \rangle = \int _{\sigma(A) \times \sigma(B)} f(x,y) \, d\mu_{\psi}(x,y)$.
+Now we can define the spectral measures of a pair of commuting bounded self-adjoint operators $A,B$ by fixing $\psi \in \mathscr{H}$. The map $f \mapsto \langle f(A,B) \psi, \psi \rangle$ is a positive bounded linear functional. Then, since $\sigma(A) \times \sigma(B)$ is a product of two compact sets, and hence is itself compact under the product topology on $\mathbb{R}^{2}$, the Riesz-Markov-Kakutani Theorem TODO: **Rudin** tells us that there exists a unique, finite, positive, Borel-regular measure $\mu_{\psi}$ on $\sigma(A) \times \sigma(B)$ such that $\langle f(A,B) \psi, \psi \rangle = \int _{\sigma(A) \times \sigma(B)} f(x,y) \, d\mu_{\psi}(x,y)$.
 
  \begin{lem}
      For $A,B \in \mathscr{B}(\mathscr{H})$, $\mu_{\psi}$ as above, we have $\supp(\mu_{\psi}) \subseteq \sigma(A,B)$.
  \end{lem}
 \begin{proof}
-    Suppose $(x_{0},y_{0}) \in \supp(\mu_{\psi})$ so there exist functions $g_{n} \in C(\sigma(A) \times \sigma(B))$ such that $\|g_{n}\|_{L_{\mu_{\psi}}^{2}} = \int _{\sigma(A) \times \sigma(B)} |g_{n}|^{2} \, d\mu_{\psi} = 1$ and $g_{n}(x,y)$ vanishes outside the closed ball $B\left( (x_{0},y_{0}), \frac{1}{n} \right)$ of radius $\frac{1}{n}$ around $(x_{0},y_{0})$, for all $n \in \mathbb{N}$. Then for $(x,y) \in B\left( (x_{0},y_{0}), \frac{1}{n} \right)$ and $f_{n} = (x-x_{0})g_{n}$ we have $\|f_{n}\|_{L_{\mu_{\psi}}^{2}} \leq \frac{1}{n}$. Now let $T_{n} = g_{n}(A,B)$ , so $\|(A - x_{0})T_{n}\psi\|^{2} = \langle \psi, ((A - x_{0})T_{n})^{*}((A - x_{0})T_{n})\psi \rangle = \langle \psi,(\overline{f_{n}}f_{n})(A,B)\psi \rangle = \int _{\sigma(A) \times \sigma(B)} |f_{n}|^{2} \, d\mu_{\psi}$ and similarly $\|T_{n}\psi\|^{2} = 1$. Then we have a sequence of norm $1$ vectors $v_{n} := T_{n}\psi$ with $(A - x_{0})v_{n} \to 0$ as $n \to \infty$, and through an identical argument $(B - y_{0})v_{n} \to 0$ as $n \to \infty$. Hence $(x_{0},y_{0}) \in \sigma(A,B)$. TODO: **check linear and antilinear sides of inner product consistent everyhwere in writeup**
+    Suppose $(x_{0},y_{0}) \in \supp(\mu_{\psi})$ so there exist functions $g_{n} \in C(\sigma(A) \times \sigma(B))$ such that $\|g_{n}\|_{L_{\mu_{\psi}}^{2}} = \int _{\sigma(A) \times \sigma(B)} |g_{n}|^{2} \, d\mu_{\psi} = 1$ and $g_{n}(x,y)$ vanishes outside the closed ball $B\left( (x_{0},y_{0}), \frac{1}{n} \right)$ of radius $\frac{1}{n}$ around $(x_{0},y_{0})$, for all $n \in \mathbb{N}$. Then for $(x,y) \in B\left( (x_{0},y_{0}), \frac{1}{n} \right)$ and $f_{n} = (x-x_{0})g_{n}$ we have $\|f_{n}\|_{L_{\mu_{\psi}}^{2}} \leq \frac{1}{n}$. Now let $T_{n} = g_{n}(A,B)$, so $\|(A - x_{0})T_{n}\psi\|^{2} = \langle ((A - x_{0})T_{n})^{*}((A - x_{0})T_{n})\psi, \psi \rangle = \langle (\overline{f_{n}}f_{n})(A,B)\psi,\psi \rangle = \int _{\sigma(A) \times \sigma(B)} |f_{n}|^{2} \, d\mu_{\psi}$ and similarly $\|T_{n}\psi\|^{2} = 1$. Then we have a sequence of norm $1$ vectors $v_{n} := T_{n}\psi$ with $(A - x_{0})v_{n} \to 0$ as $n \to \infty$, and through an identical argument $(B - y_{0})v_{n} \to 0$ as $n \to \infty$. Hence $(x_{0},y_{0}) \in \sigma(A,B)$.
 \end{proof}
 
 From this lemma we conclude that in fact
-$$\langle \psi, f(A,B)\psi \rangle = \int _{\sigma(A) \times \sigma(B)} f(x,y) \, d\mu_{\psi}(x,y) = \int _{\sigma(A,B)} f(x,y) \, d\mu_{\psi}(x,y).$$
-Now since the Polarization Identity allows us to find $\langle \phi, f(A,B)\psi \rangle$ for any $\phi \in \mathscr{H}$, we find that $\|\phi(f) - \phi(f')\| = 0$, so $\phi(f) = \phi(f')$ if $f\restriction_{\sigma(A,B)} = f'\restriction_{\sigma(A,B)}$. Hence for such $f,f'$, we have $\sigma(\phi(f)) = \sigma(\phi(f'))$.
+$$\langle f(A,B)\psi, \psi \rangle = \int _{\sigma(A) \times \sigma(B)} f(x,y) \, d\mu_{\psi}(x,y) = \int _{\sigma(A,B)} f(x,y) \, d\mu_{\psi}(x,y).$$
+Now since the Polarization Identity allows us to find $\langle f(A,B)\phi, \psi \rangle$ for any $\phi \in \mathscr{H}$, we can see that $\|\phi(f) - \phi(f')\| = 0$, so $\phi(f) = \phi(f')$ if $f\restriction_{\sigma(A,B)} = f'\restriction_{\sigma(A,B)}$. Hence for such $f,f'$, we have $\sigma(\phi(f)) = \sigma(\phi(f'))$.
 
-\begin{thm}[Spectral Mapping]
+\begin{thm}[Spectral Mapping]\label{commuting-spectral-mapping}
     $\sigma(\phi(f)) = \{ f(\lambda,\mu)  \, | \, (\lambda,\mu) \in \sigma(A,B) \} =: f(\sigma(A,B))$ for any $f \in C(\sigma(A,B))$.
 \end{thm}
 \begin{proof}
-    Omitted, as the argument is almost entirely identical to the univariate case.
+    Omitted, as once we have the previous lemmas the argument is almost entirely identical to the case with a single operator.
 \end{proof}
 
 \begin{lem}
@@ -767,20 +788,43 @@ Now since the Polarization Identity allows us to find $\langle \phi, f(A,B)\psi 
     We calculate $\|\phi(f)\|^{2} = \|\phi(f)^{*}\phi(f)\| = \|\phi(\overline{f}f)\| = \sup_{\lambda' \in (\overline{f}f)(\sigma(A,B))} |\lambda'| = \sup_{(\lambda,\mu) \in \sigma(A,B)} |(\overline{f}f)(\lambda,\mu)|$ by Theorem \ref{spectral-radius} and the Spectral Mapping Theorem.
 \end{proof}
 
-Now we consider bounded normal operators, as the functional calculus for these is what will finally unlock the spectral measures we need to construct in the case where the operator $A$, as described in our introduction to the Hamburger moment problem, is unbounded. TODO: **probably elsewhere, show $A$ is symmetric in the unbounded case** Note that if $A$ is closed and symmetric, then by Lemma TODO $A \pm i$ are closed, with $\Ran(A \pm i) = \mathscr{H}$, and thus $(A \pm i)^{-1}$ are closed, and therefore bounded TODO: reed-simon thm. III.12. Additionally, by TODO: R-S thm. VIII.2 $(A+i)^{-1}$ and $(A-i)^{-1}$ commute.
-
-In fact, we can see that $(A+i)^{-1}$ is normal: Consider the equality $\langle (A - i)\psi, (A+i)^{-1}(A+i)\phi \rangle = \langle (A-i)^{-1}(A-i)\psi, (A+i)\phi \rangle$, and the fact that $\Ran(A \pm i) = \mathscr{H}$. These imply that $((A+i)^{-1})^{*} = (A-i)^{-1}$, hence $(A+i)^{-1}$ is a normal operator. Let $T := (A+i)^{-1}$.
-
-Then we can express $T = B + iC$ where $B = \frac{T + T^{*}}{2}$, and $C = \frac{T - T^{*}}{2i}$, and we notice that $B,C$ are both self-adjoint, as well as that $\|B\|, \|C\| \leq \|T\|$. Additionally, since $T$ is normal, $B$ and $C$ commute, yielding a functional calculus expressed through $\phi_{B,C}: C(\sigma(B,C)) \to \mathscr{B}(\mathscr{H})$. Let $z = x + iy$
-
-\chapter{Conditions for existence of a measure satisfying the Hamburger Moment Problem}
-
-TODO: disambiguate the complex and real function spaces $C$ and $C^{\mathbb{R}}$ as in the uniqueness part
-
-TODO: for meeting: are we considering only measures on $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$? (i.e. on $\mathbb{R}$ with the Borel sigma-algebra)
+Now we consider bounded normal operators, as the functional calculus for these is what will finally unlock the spectral measures we need to construct in the case where the operator $A$, as described in our introduction to the Hamburger moment problem, is unbounded.
 
 \begin{defn}
-    We define the square matrices $H_{N}$, $N \in \mathbb{N} \setminus \{ 0 \}$ by stating the actions of their induced bilinear forms on polynomials $P, Q \in \mathbb{C}[X]$ of degree $\deg P, \deg Q \leq N$ represented by their coefficients, as $QH_{N}P = \mathcal{H}(P,Q)$. This gives $(H_{N})_{ij} = \gamma_{i+j}$.
+    $T \in \mathscr{B}(\mathscr{H})$ is a normal operator if it commutes with its adjoint: $TT^*=T^*T$. As usual $\mathscr{H}$ denotes a Hilbert space.
+\end{defn}
+
+We will see that the operator $A$ corresponding to the Moment Problem is closed and symmetric, and has a self-adjoint extension $\tilde{A}$. Note that in this case by Lemma 5.13 we have $\mathrm{Ran}(A \pm i) = \mathscr{K}_{\pm}^{\perp}$, and Corollary 5.16 then implies $\mathrm{Ran}(A\pm i) = \mathscr{H}$. Then by the Closed Graph Theorem $(A \pm i)^{-1} \in \mathscr{B}(\mathscr{H})$, hence $\pm i \in \rho(A)$, and Corollary \ref{first-resolvent-formula} and Remark \ref{first-resolvent-remark-unbdd} tell us that $(A \pm i)^{-1}$ commute with each other. Finally, Theorem \ref{adjoint-basic-properties} gives that $((A + i)^{-1})^{*} = (A - i)^{-1}$, so $(A + i)^{-1}$ is a normal operator.
+
+Let $T := (A + i)^{-1}$. We can express $T$ as $T = B + iC$ where $B := \frac{T + T^{*}}{2}$ and $C := \frac{T - T^{*}}{2i}$. Now note that $B,C$ are self-adjoint by the following elementary calculations:
+\begin{align*}
+B^{*} &= \left( \frac{T+T^{*}}{2} \right)^{*} = \frac{T^{*} + T}{2}, \\
+C^{*} &= \left( \frac{T - T^{*}}{2i} \right)^{*} = \frac{T^{*} - T}{-2i} = \frac{T - T^{*}}{2i}.
+\end{align*}
+We have seen that $T$ is normal, so $T,T^{*}$ commute, and $B,C$ are just linear combinations of $T,T^{*}$, so $B$ and $C$ commute with each other. This yields a functional calculus for the normal operator $T$ through the functional calculus for the pair of bounded operators $B,C$, as: $f(T) := (f \circ z)(B,C)$, where $z: \mathbb{R}^{2} \to \mathbb{C}: (x,y) \mapsto z(x,y) := x + iy$, and $f \in C(\sigma(T))$. All that is left to be checked is that $\sigma(T) = z(\sigma(B,C))$, which is an immediate consequence of the Spectral Mapping Theorem (\ref{commuting-spectral-mapping}) for the commuting functional calculus.
+
+\begin{rem}
+    The class of spectral measures and the functional calculi for both a pair of commuting bounded self-adjoint operators and normal operators can be extended to measures $\mu_{\phi,\psi}$ and to Borel-measurable functions in an identical manner to that described in Remark \ref{extended-spectral-measures} and Definition \ref{measurable-func-calc}
+\end{rem}
+
+% We will see that the operator $A$ corresponding to the Moment Problem is closed and symmetric, and has a self-adjoint extension $\tilde{A}$. Note that in this case $D(A)$ is closed, and by Lemma \ref{RanAplusi-closed} $\Ran(A \pm i)$ are closed, with $\Ran(A \pm i) = \mathscr{H}$, so $(A \pm i)^{-1}$ are closed, and therefore bounded TODO: reed-simon thm. III.12. Additionally, by TODO: R-S thm. VIII.2 $(A+i)^{-1}$ and $(A-i)^{-1}$ commute.
+
+% In fact, we can see that $(A+i)^{-1}$ is normal: Consider the equality $\langle (A - i)\psi, (A+i)^{-1}(A+i)\phi \rangle = \langle (A-i)^{-1}(A-i)\psi, (A+i)\phi \rangle$, and the fact that $\Ran(A \pm i) = \mathscr{H}$. These imply that $((A+i)^{-1})^{*} = (A-i)^{-1}$, hence $(A+i)^{-1}$ is a normal operator. Let $T := (A+i)^{-1}$.
+
+% Then we can express $T = B + iC$ where $B = \frac{T + T^{*}}{2}$, and $C = \frac{T - T^{*}}{2i}$, and we notice that $B,C$ are both self-adjoint, as well as that $\|B\|, \|C\| \leq \|T\|$. Additionally, since $T$ is normal, $B$ and $C$ commute, yielding a functional calculus expressed through $\phi_{B,C}: C(\sigma(B,C)) \to \mathscr{B}(\mathscr{H})$. Let $z = x + iy$
+
+\chapter{Conditions for existence}
+
+With all the required machinery in place, we are ready to prove the following:
+
+\begin{thm}\label{existence}
+    There exists a Borel measure $\rho$ on $\mathbb{R}$ such that
+    $$\forall n \in \mathbb{N}: \gamma_{n} = \int _{\mathbb{R}} x^{n} \, d\rho(x),$$
+    if and only if $\forall N \in \mathbb{N}: \det(H_{N}) \geq 0$.
+\end{thm}
+
+\begin{defn}
+    We define the square matrices $H_{N}$, $N \in \mathbb{N} \setminus \{ 0 \}$ by their elements $(H_{N})_{ij} = \gamma_{i+j}$.Define the bilinear form polynomials $P, Q \in \mathbb{C}[X]$ with degrees $\deg P, \deg Q \leq N$, as $\mathcal{H}(P,Q) := QH_{N}P$.
 \end{defn}
 
 \begin{rem}
@@ -791,20 +835,24 @@ TODO: for meeting: are we considering only measures on $(\mathbb{R}, \mathcal{B}
     For $N \in \mathbb{N} \setminus \{ 0 \}$ we have that $H_{N}$ is a positive semi-definite matrix if and only if $\det H_{K} \geq 0$ for $K \in \{ 1, 2, \dots, N \}$.
 \end{lem}
 \begin{proof}
-    A simple inductive argument proves this lemma. The statement clearly holds in the case $N = 1$. Suppose it holds for all $N' \in \{ 1,2,\dots,N-1 \}$ for some $N \in \mathbb{N} \setminus \{ 0 \}$. Recall that a matrix is positive semi-definite if and only if all of its eigenvalues are non-negative. Let $\lambda_{k} \geq 0, k \in \{ 1,2,\dots,N-1 \}$ be the eigenvalues of $H_{N-1}$. By definition $H_{N}$ agrees with $H_{N-1}$ on the subspace of polynomials $P \in \mathbb{C}[X]$ of degree $\deg P \leq N-1$, which is an $N-1$-dimensional subspace. Hence $N-1$ eigenvalues of $H_{N}$ are determined as the eigenvalues of $H_{N-1}$, all of which are non-negative. Then $H_{N}$ is positive semi-definite if and only if both its one remaining eigenvalue is non-negative, and $\forall K' \in \{ 1,2,\dots,N-1 \}: \det (H_{K'}) \geq 0$ by our inductive assumption. This is equivalent to saying that $H_{N}$ is positive semi-definite if and only if $\forall K \in \{ 1,2,\dots,N \}: \det(H_{K}) \geq 0$.
+    TODO: reference paper for idea A simple inductive argument proves this lemma. The statement clearly holds in the case $N = 1$. Suppose it holds for all $N' \in \{ 1,2,\dots,N-1 \}$ for some $N \in \mathbb{N} \setminus \{ 0 \}$. Recall that a matrix is positive semi-definite if and only if all of its eigenvalues are non-negative. Let $\lambda_{k} \geq 0, k \in \{ 1,2,\dots,N-1 \}$ be the eigenvalues of $H_{N-1}$. By definition $H_{N}$ agrees with $H_{N-1}$ on the subspace of polynomials $P \in \mathbb{C}[X]$ of degree $\deg P \leq N-1$, which is an $N-1$-dimensional subspace. Hence $N-1$ eigenvalues of $H_{N}$ are determined as the eigenvalues of $H_{N-1}$, all of which are non-negative. Then $H_{N}$ is positive semi-definite if and only if both its one remaining eigenvalue is non-negative, and $\forall K' \in \{ 1,2,\dots,N-1 \}: \det (H_{K'}) \geq 0$ by our inductive assumption. This is equivalent to saying that $H_{N}$ is positive semi-definite if and only if $\forall K \in \{ 1,2,\dots,N \}: \det(H_{K}) \geq 0$.
 \end{proof}
 
-Thus $\mathcal{H}$ is positive semi-definite if and only if $\forall N \in \mathbb{N} \setminus \{ 0 \}: \det(H_{N}) \geq 0$. Now note that assuming $\rho$ is a measure on $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$ with $n$th moments $\gamma_{n} = \int _{\mathbb{R}} x^{n} \, d\rho(x)$ and $P = \sum_{n=0}^{N} a_{n}X^{n} \in \mathbb{C}[X]$, then
-\begin{align}
-\mathcal{H}(P,P) &= \sum_{n=0}^{N} \sum_{m=0}^{N} \overline{a_{n}}a_{m} \gamma_{n+m}  \\
-&= \sum_{n=0}^{N} \sum_{m=0}^{N} \overline{a_{n}}a_{m} \int _{\mathbb{R}} x^{n+m} \, d\rho(x) \\
-&= \int _{\mathbb{R}} \sum_{n=0}^{N} \sum_{m=0}^{N} \overline{a_{n}}a_{m} x^{n+m} \, dx \\
-&= \int _{\mathbb{R}} \left| \sum_{n=0}^{N} a_{n} x^{n} \right|^{2} \, dx \geq 0.
-\end{align}
+Thus $\mathcal{H}$ is positive semi-definite if and only if $\forall N \in \mathbb{N} \setminus \{ 0 \}: \det(H_{N}) \geq 0$. Now note that if we assume $\rho$ is a Borel measure on $\mathbb{R}$ with $n$th moments $\gamma_{n} = \int _{\mathbb{R}} x^{n} \, d\rho(x)$ and $P = \sum_{n=0}^{N} a_{n}X^{n} \in \mathbb{C}[X]$, then
+\begin{align*}
+\mathcal{H}(P,P) &= \sum_{n=0}^{N} \sum_{m=0}^{N} \overline{a_{n}}a_{m} \gamma_{n+m} = \sum_{n=0}^{N} \sum_{m=0}^{N} \overline{a_{n}}a_{m} \int _{\mathbb{R}} x^{n+m} \, d\rho(x) \\
+&= \int _{\mathbb{R}} \sum_{n=0}^{N} \sum_{m=0}^{N} \overline{a_{n}}a_{m} x^{n+m} \, dx = \int _{\mathbb{R}} \left| \sum_{n=0}^{N} a_{n} x^{n} \right|^{2} \, dx \geq 0.
+\end{align*}
 In other words, in this case $\mathcal{H}$ is a positive semi-definite bilinear form, and recalling what we have seen so far, we have the following result:
 
+\begin{lem}\label{exists-easy-dir}
+    If there exists a Borel measure $\rho$ on $\mathbb{R}$ such that $\forall n \in \mathbb{N}: \gamma_{n} = \int _{\mathbb{R}} x^{n} \, d\rho(x)$, then $\forall N \in \mathbb{N}: \det(H_{N}) \geq 0$.
+\end{lem}
+
+In the remainder of this chapter, we will prove the converse statement, which together with Lemma \ref{exists-easy-dir} proves Theorem \ref{existence}:
+
 \begin{lem}
-    If there exists a measure $\rho$ on $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$ such that $\forall n \in \mathbb{N}: \gamma_{n} = \int _{\mathbb{R}} x^{n} \, d\rho(x)$, then $\forall N \in \mathbb{N}: \det(H_{N}) \geq 0$.
+    If $\forall N \in \mathbb{N}: \det(H_{N}) \geq 0$, then there exists a Borel measure $\rho$ on $\mathbb{R}$ with $\forall n \in \mathbb{N}: \gamma_{n} = \int _{\mathbb{R}} x^{n} \, d\rho(x)$.
 \end{lem}
 
 \begin{lem}
@@ -814,38 +862,38 @@ In other words, in this case $\mathcal{H}$ is a positive semi-definite bilinear 
     $\mathcal{H}$ is always conjugate symmetric, $\mathcal{H}(p,q) = \sum_{n=0}^{d_{p}}\sum_{m=0}^{d_{q}} \overline{a_{n}}b_{m}\gamma_{n+m} = \overline{\sum_{n=0}^{d_{p}}\sum_{m=0}^{d_{q}} a_{n}\overline{b_{m}}\gamma_{n+m}} = \overline{\mathcal{H}(q,p)}$, and it is clearly linear in the second argument. Finally, we have seen that $\mathcal{H}$ is positive semi-definite if and only if $\forall N \in \mathbb{N}: \det(H_{N}) \geq 0$.
 \end{proof}
 
-For the remainder of this section we suppose that $\mathcal{H}$ is a semi inner product on $\mathbb{C}[X]$, and use the notation $\langle P, Q \rangle = \mathcal{H}(P,Q)$, and $\|P\|^{2} = \mathcal{H}(P,P)$. TODO
+For the remainder of this chapter we suppose that $\mathcal{H}$ is a semi inner product on $\mathbb{C}[X]$, and use the notation $\langle P, Q \rangle = \mathcal{H}(P,Q)$, and $\|P\|^{2} = \mathcal{H}(P,P)$. TODO
 
-\begin{lem}
+\begin{lem}\label{subspaceK}
     Given $\mathcal{H}$ is positive semi-definite, for the subspace
     $$K := \ker(\mathcal{H}) = \{ V \in \mathbb{C}[X] \, | \, \|P\|^{2} = \langle V, V \rangle = 0 \} \subseteq \mathbb{C}[X]$$
     we have $\forall \, V \in K: \forall \, P \in \mathbb{C}[X]: \mathcal{H}(P,V) = 0$ and $\forall \, W \notin K: \mathcal{H}(W,W) > 0$
 \end{lem}
 \begin{proof}
-    Let $V \in K$, then by the Cauchy-Schwarz inequality we have $0 \leq |\langle P, V \rangle| \leq \|P\|\|V\| = 0$, so $\langle P, V \rangle = 0$ for all $P \in \mathbb{C}[X]$, and the second statement holds by definition of $K$.
+    Let $V \in K$, then by the Cauchy-Schwartz inequality we have $0 \leq |\langle P, V \rangle| \leq \|P\|\|V\| = 0$, so $\langle P, V \rangle = 0$ for all $P \in \mathbb{C}[X]$, and the second statement holds by definition of $K$.
 \end{proof}
 
 \begin{defn}
     Let $A: \mathbb{C}[X] \to \mathbb{C}[X]: P \mapsto XP$.
 \end{defn}
 
-\begin{lem}
+\begin{lem}\label{A-symm}
     $A$ is a symmetric operator.
 \end{lem}
 \begin{proof}
-    Note that $\gamma_{n} \in \mathbb{R}$ for all $n \in \mathbb{N}$. Then $\left\langle  \sum_{i=0}^{d}a_{i}X^{i}, A\left(\sum_{j=0}^{d'}b_{j}X^{j}\right) \right\rangle = \sum_{i=0}^{d} \sum_{j=0}^{d'} \overline{a_{i}}b_{j} \gamma_{i+j+1} = \left\langle  A\left(\sum_{i=0}^{d}a_{i}X^{i}\right), \sum_{j=0}^{d'}b_{j}X^{j} \right\rangle$.
+    Holds by the same argument as in the proof of Lemma \ref{A-selfadj}.
 \end{proof}
 
 \begin{lem}
-    For $K$ as in the previous lemma, we have $A(K) \subseteq K$.
+    For $K$ as in the Lemma \ref{subspaceK}, we have $A(K) \subseteq K$.
 \end{lem}
 \begin{proof}
-    Recall that $A$ is symmetric, thus
-    $$\|AP\| = \langle P, A^{2}P \rangle = \langle P, X^{2}P \rangle \leq \|P\|\|X^{2}P\| = 0$$
-    by the Cauchy-Schwarz inequality.
+    $A$ is symmetric, thus
+    $\|AP\| = \langle A^{2}P, P \rangle = \langle X^{2}P, P \rangle \leq \|X^{2}P\|\|P\| = 0$
+    by the Cauchy-Schwartz inequality.
 \end{proof}
 
-We consider the quotient space $X = \mathbb{C}[x]/\ker(\mathcal{H})$. Now $\mathcal{H}$ induces an inner product on $X$. For a representative $\phi$ of the equivalence classes that form the elements of $X$, denote the corresponding equivalence class as $[\phi]$. Let $\mathscr{H}^{\gamma}$ be the completion of $X$ with regard to the norm associated with this inner product.
+We consider the quotient space $X = \mathbb{C}[x]/\ker(\mathcal{H})$. Now $\mathcal{H}$ induces an inner product on $X$. For a representative $\phi$ of the equivalence classes that form the elements of $X$, denote the corresponding equivalence class as $[\phi]$. Let $\mathscr{H}^{\gamma}$ be the completion of $X$ with regard to the norm associated with the inner product $\mathcal{H}$.
 
 \begin{defn}
     Denote by $C$ the conjugation $$C: \mathbb{C}[X] \to \mathbb{C}[X]: \sum_{i=0}^{d}a_{i}X^{i} \mapsto \sum_{i=0}^{d}\overline{a_{i}}X^{i}.$$
@@ -853,42 +901,61 @@ We consider the quotient space $X = \mathbb{C}[x]/\ker(\mathcal{H})$. Now $\math
 
 We can see that $A$ commutes with $C$, $AC = CA$. Additionally, $C$ is an isometry, so it respects our quotienting in the same sense that $A$ does,
 $$C(\ker(\mathcal{H})) \subseteq \ker(\mathcal{H}).$$
-Therefore we can consider both $A$ and $C$ as operators on the quotient space $X = \mathbb{C}[x]/\ker(\mathcal{H})$. As they are both bounded, they have extensions to $\mathscr{H}^\gamma$ by the BLT Theorem, which we denote as $A'$ and $C'$ respectively. By continuity these new operators also commute, $A'C' = C'A'$. Now the theory we have been developing can bear fruit, as we can apply von Neumann's Theorem to see that $A'$ has some (not necessarily unique) self-adjoint extension $\tilde{A}$ on $\mathscr{H}^\gamma$. Although we do not consider the question of uniqueness in the unbounded case of the Hamburger Moment Problem, we note that this lack of uniqueness is what eventually leads to complications when compared to the bounded case.
+Therefore we can consider both $A$ and $C$ as operators on the quotient space $X = \mathbb{C}[x]/\ker(\mathcal{H})$. As they are both bounded, they have extensions to $\mathscr{H}^\gamma$ by the BLT Theorem, which we denote as $A'$ and $C'$ respectively. By continuity $C'$ remains a conjugation, and these new operators also commute, $A'C' = C'A'$. Now the theory we have been developing can bear fruit, as we can apply von Neumann's Theorem \ref{vonNeumann} to see that $A'$ has some (not necessarily unique) self-adjoint extension $\tilde{A}$ on $\mathscr{H}^\gamma$. Although we do not consider the question of uniqueness in the unbounded case of the Hamburger Moment Problem, we note that the possibility that $A'$ has more than one self-adjoint extension is what eventually leads to complications when compared to the bounded case. TODO: cite
+
+What still remains to be shown is that there exists some measure $\mu$, such that $\int _{\mathbb{R}} x^{n} \, d\mu(x) = \gamma_{n}$ for all $n \in \mathbb{N}$. In case that $A$ is bounded there is no work remaining, we simply note that the spectral measure $\mu_{\mathds{1}}$ satisfies the Hamburger Moment Problem, as $\int _{\sigma(A)} x^{n} \, d\mu_{\mathds{1}}(x) = \langle (A')^{n}\mathds{1},\mathds{1} \rangle = \gamma_{n}$.
+
+When $A$ is unbounded we cannot yet make this construction, as we do not have access to the unbounded functional calculus, which would be the standard way of constructing a solution to the Hamburger Moment Problem. TODO: cite We do however have access to a functional calculus for normal operators, as seen in Chapter $6$. In the rest of this chapter we show that the functional calculus, as well as the spectral measures, corresponding to the normal operator $T := (A'+i)^{-1}$ will be sufficient for our purposes. We will denote the map inducing the functional calculus for $T$ as $\phi'$, and the spectral measure $\mu_{\mathds{1}}$ is the unique measure such that $\langle f(T)\mathds{1},\mathds{1} \rangle = \int _{\sigma(T)} f \, d\mu_{\mathds{1}}$ for all bounded Borel-measurable functions $f$ defined on $\sigma(T)$.
 
 \begin{lem}
-    The equivalence class $[\mathds{1}]$ in $\mathbb{C}[X]/\ker(\mathcal{H})$ of the constant function $\mathds{1}(x) = 1$ is cyclic in $\mathscr{H}^{\gamma}$ with regard to $\tilde{A}$.
+    The Borel set $\{ 0 \}$ has measure $0$ under $\mu_{\mathds{1}}$: $\mu_{\mathds{1}}(\{ 0 \}) = 0$.
 \end{lem}
 \begin{proof}
-    Clearly $S := \spanrm\{ [\mathds{1}], \tilde{A}[\mathds{1}] = [X], \tilde{A}^{2}[\mathds{1}] = [X^{2}], \dots \} = \mathbb{C}[X]/\ker(\mathcal{H})$, where $[P]$ denotes the equivalence class of $P$ in $\mathbb{C}[X]/\ker(\mathcal{H})$. Therefore $\mathcal{S}$ is dense in $\mathscr{H}^{\gamma}$, since $\mathscr{H}^{\gamma}$ is the completion of $\mathbb{C}[X]/\ker(\mathcal{H})$.
+    Let $\mathds{1}_{\{ 0 \}}$ denote the indicator function of $\{ 0 \}$, i.e. $\mathds{1}_{\{ 0 \}}(0) = 1$, and for all other $0 \neq x \in \mathbb{R}$, $\mathds{1}_{\{ 0 \}}(x) = 0$. Then $T\phi'(\mathds{1}_{\{ 0 \}}) = \phi'(x\mathds{1}_{\{ 0 \}}) = \phi'(0) = 0$, and $\ker(T) = \{ 0 \}$ since $T$ is injective by definition. Therefore $\phi'(\mathds{1}_{\{ 0 \}}) = 0$, hence $\int _{\sigma(T)} \mathds{1}_{\{ 0 \}} \, d\mu_{\mathds{1}} = \langle \phi'(\mathds{1}_{\{ 0 \}})\mathds{1}, \mathds{1} \rangle = \langle 0 , \mathds{1} \rangle = 0$.
 \end{proof}
 
-Now consider the map $\ell: C(\sigma(\tilde{A})) \to \mathbb{R}: f \mapsto \langle \mathds{1}, f(\tilde{A})\mathds{1} \rangle$, where $f(\tilde{A})$ is defined by the continuous functional calculus for self-adjoint linear operators (since we have now seen that the continuous functional calculus exists for both bounded and unbounded (densely defined) self-adjoint operators).
-
-TODO: **why is $\ell$ positive? -> this is due to f): $f \geq 0 \implies \phi(f) \geq 0$** Maybe we define $f \mapsto \langle [\mathds{1}], [\phi_{\tilde{A}}(|f|)\mathds{1}] \rangle$ instead? And then the functional calculus gives that $\phi_{\tilde{A}}(|f|) \geq 0$. -> No, we are fine with $\langle [\mathds{1}], [f(\tilde{A})\mathds{1}] \rangle$: see [Positive linear functional - Wikipedia](https://en.wikipedia.org/wiki/Positive_linear_functional); and what we are actually claiming is the map $f \mapsto \langle \psi, f(\tilde{A})\psi \rangle$ is a positive bounded linear functional, not that $\langle \psi, f(\tilde{A})\psi \rangle$ is positive
-
-Then $\ell$ is a positive bounded linear functional, so by the Riesz-Markov-Kakutani Theorem there is a unique measure $\mu_{\mathds{1},\mathds{1}}$ on TODO: **do we need $\mathcal{B}(\mathbb{R})$ here??** $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$ such that $\langle \mathds{1}, f(\tilde{A})\mathds{1} \rangle = \int _{\mathbb{R}} |f(x)| \, d\mu_{\mathds{1},\mathds{1}}(x)$.
-
-____
-
-\begin{lem}
-    If $\forall N \in \mathbb{N}: \det(H_{N}) \geq 0$, then there exists a measure $\rho$ on $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$ with $\forall n \in \mathbb{N}: \gamma_{n} = \int _{\mathbb{R}} x^{n} \, d\rho(x)$.
-\end{lem}
-
- TODO / NOTE: will need the multiplication operator form of the Spectral Theorem, cyclic version is good enough, I think the same method as for a single bounded self-adjoint operator should work
-
-\begin{lem}
-    A measure $\rho$ on $\mathbb{R}$ with moments $(\gamma_{n})_{n=0}^{\infty}$ exists if and only if each matrix $H_{N}$ has positive determinants: $\forall N \in \mathbb{N}: \det (H_{N}) > 0$.
+\begin{lem}\label{supp-real}
+    Let $f(x) = \frac{1}{x} - i$, and consider the pushforward measure $\mu_{\mathds{1}} \circ f^{-1}$, where $f^{-1}$ is the set-valued function mapping all elements of $\mathrm{Ran}(f)$ to their preimages. The support of this measure $\mathrm{supp}(\mu_{\mathds{1}} \circ f^{-1}) \subseteq \mathbb{R}$ is a subset of the reals.
 \end{lem}
 \begin{proof}
-    We combine the results in Lemmas 1 and 2.
+    First calculate $(\mu_{\mathds{1}} \circ f^{-1})(f(supp(\mu_{\mathds{1}}))) = \mu_{\mathds{1}}(\mathrm{supp}(\mu_{\mathds{1}})) = 1$, hence all complex Borel sets disjoint from $f(\mathrm{supp}(\mu_{\mathds{1}}))$ have measure $0$ under $\mu_{\mathds{1}} \circ f^{-1}$. Therefore $\mathrm{supp}(\mu_{\mathds{1}} \circ f^{-1}) \subseteq \overline{f(\mathrm{supp}(\mu_{\mathds{1}}))} \subseteq \overline{f(\sigma(T))}$. So all that remains to show is that $f(\sigma(T)) \subseteq \mathbb{R}$. TODO
 \end{proof}
 
+\begin{defn}
+    We define a linear operator $S$ on $\mathscr{H}^{\gamma}$. Its domain $D(S)$ consists of those $v \in \mathscr{H}$ such that $\forall w \in \mathscr{H}: \frac{1}{x} - i \in L^{1}(\sigma(T),\mu_{v,w})$ and $|\int _{\sigma(T)} \frac{1}{x} - i \, d\mu_{v,w}| \leq C\|w\|_{\mathscr{H}^{\gamma}}$. For $v \in D(S)$ we define $Sv$ as the unique element representing the linear functional $w \mapsto \langle Sv, w \rangle = \int _{\sigma(T)} \frac{1}{x} - i \, d\mu_{v,w}$ by the Riesz Representation Theorem.
+\end{defn}
 
+\begin{lem}
+    Let $f \in L^{1}(\sigma(T), \mu_{\mathds{1}})$. Then
+    $$\|f\|_{L^{1}(\mu_{\mathds{1}})} = \sup_{g \in C(\sigma(T)), \|g\|_{L^{\infty}(\mu_{\mathds{1}})}\leq 1} \left|\int _{\sigma(T)} fg \, d\mu_{\mathds{1}}\right|.$$
+\end{lem}
+\begin{proof}
+    Follows by elementary calculation from Hölder's Inequality.
+\end{proof}
 
-By the BLT Theorem $\tilde{A}$ TODO has a unique extension to $\mathscr{H}^{\gamma}$.
+\begin{lem}
+    $A'$ is an extension of $S$, i.e. $S \subseteq A'$.
+\end{lem}
+\begin{proof}
+    Let $w \in D(A')$, $v = Tw$, and $g \in C(\sigma(T)), \|g\|_{L^{\infty}(\mu_{\mathds{1}})} \leq 1$. We calculate for all $\epsilon > 0$:
+    \begin{align*}
+    \left| \int _{\sigma(T)} \left( \frac{1}{x} - i \right) \mathds{1}_{\{ |x| \geq \epsilon \}} g(x) \, d\mu_{v,z}(x) \right| &= \left| \int _{\sigma(T)} x \left( \frac{1}{x} - i \right) \mathds{1}_{\{ |x| \geq \epsilon \}} g(x) \, d\mu_{w,z}(x) \right| \\
+    &= \left| \int _{\sigma(T)} ( 1 - ix ) \mathds{1}_{\{ |x| \geq \epsilon \}} g(x) \, d\mu_{w,z}(x) \right| \\
+    &\leq \|g\|_{L^{\infty}(\mu_{w,z})} \left(\sup_{x \in \sigma(T)} (1 - ix)\right) \|w\| \|z\|.
+    \end{align*}
+    The last inequality above is a consequence of the Cauchy-Schwartz Inequality. Then, letting $\epsilon \to 0$, the previous Lemma with $f(x) = \left(\frac{1}{x} - i\right)\mathds{1}_{|x|\geq\epsilon}$ implies that $w \in D(S)$. So $D(A') \subseteq D(S)$.
 
-TODO ...
-    
+    Now we will show that $Sw = A'w$. Calculate
+    $$\int _{\sigma(T)} \frac{1}{x} - i \, d\mu_{v,z}(x) = \int _{\sigma(T)} x\left( \frac{1}{x} - i \right) \, d\mu_{w,z} = \langle (1 - iT)w, z \rangle.$$
+    Then we need to see that $\langle (1 - iT)w, z \rangle = \langle A'v, z \rangle$, which holds if and only if $$A'v = (1 - iT)w \iff A'v = w - iv \iff (A'+i)v = w \iff v = (A'+i)^{-1}w,$$
+    but $T = (A' + i)^{-1}$ so the last equality holds by assumption.
+\end{proof}
+
+Note that $A'$ is self-adjoint, and $A' \subseteq S$, therefore $S^{*} \subseteq A'^{*}$, so we have
+$$A' = S = S^{*} = A'^{*}.$$
+Now, we know by definition that $\gamma_{n} = \langle (A')^{n}\mathds{1}, \mathds{1} \rangle$, and the previous statement implies $\langle (A')^{n}\mathds{1},\mathds{1} \rangle = \langle S^{n}\mathds{1},\mathds{1}\rangle$. Since $\mathds{1} \in D(A')$, $\mathds{1} \in D(S)$, hence $\frac{1}{x} - i \in L^{1}(\sigma(T),\mu_\mathds{1})$ by definition of $D(S)$. So the measurable functional calculus for $T$ gives $\langle S^{n}\mathds{1},\mathds{1} \rangle = \int _{\sigma(T)} \left( \frac{1}{x} - i \right)^{n} \, d\mu_{\mathds{1}}$. Finally, let $f(x) = \frac{1}{x} - i$, and we have seen in Lemma \ref{supp-real} that $\mathrm{supp}\left( \mu_{\mathds{1}} \circ f^{-1} \right) \subseteq \mathbb{R}$. Putting everything together, we have for all $n \in \mathbb{N}$:
+$$\gamma_{n} = \langle (A')^{n}\mathds{1},\mathds{1} \rangle = \langle S^{n}\mathds{1},\mathds{1} \rangle = \int _{\mathbb{R}} x^{n} \, d(\mu_{\mathds{1}} \circ f^{-1})(x).$$
+So $\mu_{\mathds{1}} \circ f^{-1}$ is a solution to the Hamburger Moment Problem.
 
 
 
